@@ -1,3 +1,4 @@
+---
 Mushroom Square:
     # Home Assistant override
     ha-card-border-radius: 6px

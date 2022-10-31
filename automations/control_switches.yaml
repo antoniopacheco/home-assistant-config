@@ -207,8 +207,10 @@
     - parallel:
         - service: cover.set_cover_position
           entity_id: cover.living_room_blinds
-          data: { position: 50 }
+          data:
+            position: 50
         - service: cover.set_cover_position
           entity_id: cover.dining_blinds
-          data: { position: 50 }
+          data:
+            position: 50
   mode: single
