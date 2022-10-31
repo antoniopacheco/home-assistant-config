@@ -1,0 +1,215 @@
+sensor.lumi_lumi_sensor_motion_aq2_c039e207_device_temperature:
+  disabled: true
+sensor.lumi_lumi_sensor_motion_aq2_c039e207_illuminance:
+  hidden: true
+sensor.lumi_lumi_sensor_motion_aq2_c039e207_power:
+  disabled: true
+binary_sensor.lumi_lumi_sensor_motion_aq2_c039e207_occupancy:
+  sort_order: 5
+binary_sensor.lumi_lumi_sensor_motion_aq2_c039e207_ias_zone:
+  sort_order: 6
+binary_sensor.top_right:
+  sort_order: 4
+  hidden: true
+binary_sensor.bottom_left:
+  sort_order: 5
+  hidden: true
+light.bedroom_fan_light:
+  sort_order: 1
+binary_sensor.top_left:
+  sort_order: 6
+  hidden: true
+binary_sensor.bottom_right:
+  sort_order: 7
+  hidden: true
+binary_sensor.bed_sensor:
+  sort_order: 8
+  hidden: true
+button.lumi_lumi_sensor_motion_aq2_c039e207_identify:
+  sort_order: 9
+  hidden: true
+fan.master_bedroom_ceiling_fan:
+  sort_order: 2
+media_player.jesus_s_echo_dot_bedroom:
+  sort_order: 7
+scene.sleep_time:
+  sort_order: 7
+  hidden: true
+sensor.jesus_s_echo_dot_bedroom_next_alarm:
+  sort_order: 8
+sensor.jesus_s_echo_dot_bedroom_next_timer:
+  sort_order: 9
+sensor.jesus_s_echo_dot_bedroom_next_reminder:
+  sort_order: 10
+switch.jesus_s_echo_dot_bedroom_do_not_disturb_switch:
+  sort_order: 4
+switch.jesus_s_echo_dot_bedroom_shuffle_switch:
+  sort_order: 3
+switch.jesus_s_echo_dot_bedroom_repeat_switch:
+  sort_order: 11
+alarm_control_panel.entryway:
+  hidden: true
+binary_sensor.thermostat_1_blower_active:
+  hidden: true
+binary_sensor.lumi_lumi_sensor_motion_aq2_b0f5e207_occupancy:
+  hidden: true
+binary_sensor.lumi_lumi_sensor_motion_aq2_b0f5e207_ias_zone:
+  hidden: true
+binary_sensor.entryway_global_motion_sensor:
+  hidden: true
+binary_sensor.entryway_motion_sensor:
+  hidden: true
+binary_sensor.entryway_person_detector_sensor:
+  hidden: true
+binary_sensor.entryway_pet_detector_sensor:
+  hidden: true
+binary_sensor.entryway_sound_detector_sensor:
+  hidden: true
+binary_sensor.entryway_crying_detector_sensor:
+  hidden: true
+binary_sensor.entryway_notification_for_person:
+  hidden: true
+binary_sensor.entryway_notification_for_pet:
+  hidden: true
+binary_sensor.entryway_notification_for_all_other_motion:
+  hidden: true
+binary_sensor.entryway_notification_for_crying:
+  hidden: true
+binary_sensor.entryway_notification_for_all_sound:
+  hidden: true
+binary_sensor.entryway_streaming_sensor:
+  hidden: true
+button.lumi_lumi_sensor_motion_aq2_b0f5e207_identify:
+  hidden: true
+button.lumi_lumi_sensor_cube_1ac56408_identify:
+  hidden: true
+media_player.samsung_the_frame_55:
+  hidden: true
+remote.living_room:
+  hidden: true
+select.entryway_video_streaming_quality:
+  hidden: true
+select.entryway_video_recording_quality:
+  hidden: true
+select.entryway_motion_detection_type:
+  hidden: true
+select.entryway_rotation_speed:
+  hidden: true
+sensor.thermostat_1_current_compressor_speed:
+  disabled: true
+sensor.thermostat_1_requested_compressor_speed:
+  disabled: true
+sensor.thermostat_1_relative_humidity:
+  hidden: true
+sensor.thermostat_1_nativezone_zone_status:
+  hidden: true
+sensor.thermostat_1_nativezone_zone_setpoint_status:
+  hidden: true
+sensor.lumi_lumi_sensor_motion_aq2_b0f5e207_power:
+  hidden: true
+sensor.lumi_lumi_sensor_motion_aq2_b0f5e207_illuminance:
+  hidden: true
+sensor.lumi_lumi_sensor_motion_aq2_b0f5e207_device_temperature:
+  hidden: true
+sensor.lumi_lumi_sensor_cube_1ac56408_power:
+  hidden: true
+sensor.entryway_stream_queue_size:
+  hidden: true
+sensor.entryway_detected_person_name:
+  hidden: true
+sensor.entryway_streaming_source_type:
+  hidden: true
+sensor.entryway_streaming_source_address:
+  hidden: true
+sensor.entryway_codec:
+  hidden: true
+switch.thermostat_1_nativezone_hold:
+  hidden: true
+switch.alexa_living_room_do_not_disturb_switch:
+  hidden: true
+switch.alexa_living_room_shuffle_switch:
+  hidden: true
+switch.alexa_living_room_repeat_switch:
+  hidden: true
+camera.entryway:
+  sort_order: 15
+climate.thermostat_1_nativezone:
+  sort_order: 4
+fan.living_room_ceiling_fan:
+  sort_order: 3
+media_player.living_room:
+  sort_order: 5
+media_player.onkyo_tx_nr595_f52c87:
+  sort_order: 6
+switch.living_room_ceiling_fan_light:
+  sort_order: 1
+media_player.alexa_living_room:
+  sort_order: 13
+sensor.thermostat_1_system_status:
+  sort_order: 14
+sensor.thermostat_1_air_cleaner_mode:
+  sort_order: 12
+  hidden: true
+sensor.thermostat_1_outdoor_temperature:
+  sort_order: 7
+sensor.thermostat_1_nativezone_temperature:
+  sort_order: 15
+  hidden: true
+sensor.alexa_living_room_next_alarm:
+  sort_order: 9
+sensor.alexa_living_room_next_timer:
+  sort_order: 11
+sensor.alexa_living_room_next_reminder:
+  sort_order: 12
+switch.living_room_main_lights:
+  sort_order: 2
+switch.entryway_enabled:
+  sort_order: 10
+switch.entryway_motion_detection:
+  sort_order: 17
+  hidden: true
+switch.entryway_motion_tracking:
+  sort_order: 18
+  hidden: true
+switch.entryway_pet_detection:
+  sort_order: 19
+  hidden: true
+switch.entryway_status_led:
+  sort_order: 20
+  hidden: true
+switch.entryway_auto_night_vision:
+  sort_order: 21
+  hidden: true
+switch.entryway_microphone:
+  sort_order: 22
+  hidden: true
+switch.entryway_speaker:
+  sort_order: 23
+  hidden: true
+switch.entryway_audio_recording:
+  sort_order: 24
+  hidden: true
+switch.entryway_sound_detection:
+  sort_order: 25
+  hidden: true
+switch.entryway_rtsp_stream:
+  sort_order: 26
+  hidden: true
+media_player.jesus_s_7th_echo_dot:
+  hidden: true
+button.bar_button_identifybutton:
+  hidden: true
+sensor.lumi_lumi_motion_ac02_ed454e00_illuminance:
+  hidden: true
+sensor.alexa_kitchen_next_alarm:
+  hidden: true
+sensor.alexa_kitchen_next_timer:
+  hidden: true
+sensor.alexa_kitchen_next_reminder:
+  hidden: true
+sensor.kitchen_manual_switch_battery:
+  hidden: true
+sensor.lumi_lumi_motion_ac02_power:
+  hidden: true
+sensor.bar_button_battery:
+  hidden: true

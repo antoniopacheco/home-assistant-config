@@ -1,0 +1,13 @@
+col_span: '1'
+col_span_lg: '1'
+col_span_xl: '1'
+collapsible_controls: true
+entity: fan.living_room_ceiling_fan
+icon_animation: true
+name: Fan
+position: top
+row_span: '1'
+row_span_lg: '1'
+row_span_xl: '1'
+show_percentage_control: true
+type: custom:mushroom-fan-card

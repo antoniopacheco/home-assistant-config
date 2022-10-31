@@ -1,0 +1,109 @@
+views:
+  - title: Home
+    cards:
+      - entity: weather.home
+        name: Weather
+        type: custom:simple-weather-card
+      - entities:
+          - entities:
+              - light.living_room_main_lights
+              - light.living_room_ceiling_fan_light
+            head:
+              color_picker: false
+              entity: light.living_room_main_lights
+              hide_when_off: false
+              name: Living room
+            type: custom:fold-entity-row
+          - entities:
+              - light.kitchen_main_lights
+            head:
+              color_picker: false
+              entity: light.kitchen_main_lights
+              hide_when_off: false
+              name: Kitchen
+            type: custom:fold-entity-row
+          - entities:
+              - light.guest_room_ceiling_fan_light
+            head:
+              color_picker: false
+              entity: light.guest_room_ceiling_fan_light
+              hide_when_off: false
+              name: Guest bedroom
+            type: custom:fold-entity-row
+          - entities:
+              - light.front_porch_overhead_light
+            head:
+              color_picker: false
+              entity: light.front_porch_overhead_light
+              hide_when_off: false
+              name: Porche
+            type: custom:fold-entity-row
+        show_header_toggle: false
+        title: Lights
+        type: entities
+      - control: false
+        entity: climate.thermostat_1_nativezone
+        icon: false
+        name: false
+        step_layout: row
+        step_size: 0.5
+        style: |
+          ha-card {
+            --st-font-size-xl: 30px;
+          }
+        type: custom:simple-thermostat
+        header:
+          name: Main floor
+      - cards:
+          - entities:
+              - entity: vacuum.braava_jet
+                name: Mop
+                primary:
+                  entity: binary_sensor.vacuum_day
+                  name: Mop day
+                secondary:
+                  attribute: battery_level
+                  name: Battery
+                  unit: '%'
+                type: custom:multiple-entity-row
+              - entity: switch.first_floor_mop_mode
+              - entity: input_boolean.swiped_first_floor_today
+              - entity: binary_sensor.vacuum_day
+            show_header_toggle: false
+            type: entities
+        type: vertical-stack
+      - cards:
+          - entities:
+              - entity: vacuum.roomba
+                name: Vacuum cleaner
+                primary:
+                  entity: binary_sensor.vacuum_day
+                  name: Vacuum day
+                secondary:
+                  attribute: battery_level
+                  name: Battery
+                  unit: '%'
+                type: custom:multiple-entity-row
+              - entity: switch.first_floor_vacuum_mode
+              - entity: input_boolean.swiped_first_floor_today
+              - entity: binary_sensor.vacuum_day
+            show_header_toggle: false
+            type: entities
+        type: vertical-stack
+      - entities:
+          - entity: input_boolean.vacation_mode
+          - entity: input_boolean.guest_mode
+          - entity: input_boolean.busy_in_kitchen
+          - entity: input_boolean.busy_in_living_room
+        show_header_toggle: false
+        type: entities
+      - type: vertical-stack
+        cards:
+          - type: custom:mushroom-cover-card
+            entity: cover.living_room_blinds
+            show_position_control: false
+            show_buttons_control: true
+          - type: custom:mushroom-cover-card
+            entity: cover.dining_blinds
+            show_position_control: false
+            show_buttons_control: true

@@ -1,0 +1,64 @@
+kitchen:
+  icon: mdi:fridge
+  floor: '1'
+  disabled: false
+bedroom:
+  icon: mdi:bed-king
+  floor: '2'
+  disabled: false
+living_room:
+  icon: mdi:sofa
+  floor: '1'
+  disabled: false
+guest_bedroom:
+  icon: mdi:bed
+  floor: '1'
+  disabled: false
+loft:
+  icon: mdi:sofa-single
+  floor: '2'
+  disabled: false
+garage:
+  icon: mdi:garage
+  floor: '1'
+  disabled: false
+lloyd_s_office:
+  icon: mdi:laptop
+  floor: '2'
+  disabled: false
+tony_s_office:
+  icon: mdi:desktop-classic
+  floor: '2'
+  disabled: false
+porche:
+  icon: mdi:door
+  floor: '1'
+  disabled: false
+frontyard:
+  icon: mdi:flower
+  floor: '1'
+  disabled: false
+laundry_room:
+  icon: mdi:dishwasher
+  floor: '2'
+  disabled: false
+entryway:
+  icon: mdi:door-sliding
+  floor: '1'
+  disabled: false
+master_bedroom_bathroom:
+  icon: mdi:shower-head
+  floor: '2'
+  disabled: false
+dining:
+  icon: mdi:table-chair
+  floor: '1'
+  disabled: false
+backyard:
+  icon: mdi:flower-tulip
+  floor: '1'
+  disabled: false
+stairs:
+  icon: mdi:stairs
+  floor: '1'
+  disabled: false

@@ -1,19 +1,53 @@
-# Example .gitignore file for your config dir.
-# An * ensures that everything will be ignored.
-*
-# You can whitelist files/folders with !, these will not be ignored.
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# home assistant
+## You can whitelist files/folders with !, these will not be ignored.
 !*.yaml
 !.gitignore
 !*.md
-!*automations
-!*includes
 
-# Ignore folders.
+## Ignore folders.
 .storage
 .cloud
 .google.token
 
-# Ensure these YAML files are ignored, otherwise your secret data/credentials will leak.
+## Ensure these YAML files are ignored, otherwise your secret data/credentials will leak.
 ip_bans.yaml
-secrets.yaml
 known_devices.yaml
+secrets.yaml
+
+## Others
+._includes
+.homekit.state
+.spotify-token-cache
+.vscode/
+appdaemon/compiled
+appdaemon/dashboards/
+home-assistant_v2.db
+tts/
+webostv.conf
+notebooks/
+airsonos.xml
+themes/ios-*
+node-red/
+
+*.pem
+nexia_config_antonio_pacheco.conf
+trane_config_antonio_pacheco.conf
+*.log
+*.log.*
+.*.august.conf
+home-assistant_v2.db-shm
+home-assistant_v2.db-wal
+image/
+rtsp2webrtc_v5_aarch64
+zigbee.db
+zigbee.db-shm
+zigbee.db-wal

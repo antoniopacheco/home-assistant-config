@@ -1,0 +1,5 @@
+Mushroom:
+    # Nothing here as it's the default HA theme since 2022.11
+    modes:
+        light: {}
+        dark: {}
