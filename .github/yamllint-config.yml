@@ -6,4 +6,12 @@ rules:
   comments-indentation: disable
 
 ignore: |
+  lovelace-ui.yaml
+  custom_components/
+  rhasspy/
+  blueprints/
+  dwains-dashnoard/
+  notebooks/
   .git
+  .github/workflows/yaml-lint.yaml
+  scenes.yaml

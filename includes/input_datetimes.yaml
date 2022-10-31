@@ -26,7 +26,7 @@ dryer_machine_on:
 dryer_machine_off:
   name: Dryer machine last done
   has_date: true
-  has_time: true  
+  has_time: true
 
 dishwasher_on:
   name: Dishwasher last started
@@ -46,6 +46,4 @@ sprinklers_on:
 sprinklers_off:
   name: Sprinklers last done
   has_date: true
-  has_time: true  
-
-
+  has_time: true

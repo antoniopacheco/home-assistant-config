@@ -64,7 +64,7 @@ views:
                 secondary:
                   attribute: battery_level
                   name: Battery
-                  unit: '%'
+                  unit: "%"
                 type: custom:multiple-entity-row
               - entity: switch.first_floor_mop_mode
               - entity: input_boolean.swiped_first_floor_today
@@ -82,7 +82,7 @@ views:
                 secondary:
                   attribute: battery_level
                   name: Battery
-                  unit: '%'
+                  unit: "%"
                 type: custom:multiple-entity-row
               - entity: switch.first_floor_vacuum_mode
               - entity: input_boolean.swiped_first_floor_today

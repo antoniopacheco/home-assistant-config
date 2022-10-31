@@ -1,14 +1,14 @@
 #
-#  _     _       _     _       
-# | |   (_) __ _| |__ | |_ ___ 
+#  _     _       _     _
+# | |   (_) __ _| |__ | |_ ___
 # | |   | |/ _` | '_ \| __/ __|
 # | |___| | (_| | | | | |_\__ \
 # |_____|_|\__, |_| |_|\__|___/
-#          |___/              
+#          |___/
 #
 
-#  ____                _          
-# |  _ \ ___  _ __ ___| |__   ___ 
+#  ____                _
+# |  _ \ ___  _ __ ___| |__   ___
 # | |_) / _ \| '__/ __| '_ \ / _ \
 # |  __/ (_) | | | (__| | | |  __/
 # |_|   \___/|_|  \___|_| |_|\___|
@@ -39,21 +39,20 @@
     domain: switch
   mode: single
 
-
-#                                                _     _ _       _     _       
-#  _ __ ___   _____   _____ _ __ ___   ___ _ __ | |_  | (_) __ _| |__ | |_ ___ 
+#                                                _     _ _       _     _
+#  _ __ ___   _____   _____ _ __ ___   ___ _ __ | |_  | (_) __ _| |__ | |_ ___
 # | '_ ` _ \ / _ \ \ / / _ \ '_ ` _ \ / _ \ '_ \| __| | | |/ _` | '_ \| __/ __|
 # | | | | | | (_) \ V /  __/ | | | | |  __/ | | | |_  | | | (_| | | | | |_\__ \
 # |_| |_| |_|\___/ \_/ \___|_| |_| |_|\___|_| |_|\__| |_|_|\__, |_| |_|\__|___/
 #                                                          |___/
 #
 
-#  _     _       _               ____                       
-# | |   (_)_   _(_)_ __   __ _  |  _ \ ___   ___  _ __ ___  
-# | |   | \ \ / / | '_ \ / _` | | |_) / _ \ / _ \| '_ ` _ \ 
+#  _     _       _               ____
+# | |   (_)_   _(_)_ __   __ _  |  _ \ ___   ___  _ __ ___
+# | |   | \ \ / / | '_ \ / _` | | |_) / _ \ / _ \| '_ ` _ \
 # | |___| |\ V /| | | | | (_| | |  _ < (_) | (_) | | | | | |
 # |_____|_| \_/ |_|_| |_|\__, | |_| \_\___/ \___/|_| |_| |_|
-#                        |___/                              
+#                        |___/
 
 - alias: "Light: Turn On Living room when motion is detected"
   trigger:
@@ -84,304 +83,303 @@
   mode: single
 
 - alias: "Light: Turn Off Living room when motion is not detected"
-  description: ''
+  description: ""
   trigger:
-  - type: no_motion
-    platform: device
-    device_id: 477db1ab35542c46468e2b83eaf7adfa
-    entity_id: binary_sensor.lumi_lumi_sensor_motion_aq2_b0f5e207_ias_zone
-    domain: binary_sensor
+    - type: no_motion
+      platform: device
+      device_id: 477db1ab35542c46468e2b83eaf7adfa
+      entity_id: binary_sensor.lumi_lumi_sensor_motion_aq2_b0f5e207_ias_zone
+      domain: binary_sensor
   condition: []
   action:
-  - type: turn_off
-    device_id: e97cd70c4660d3f773bccb57a70ccac8
-    entity_id: switch.living_room_main_lights
-    domain: switch
-  - type: turn_off
-    device_id: b04b8561152faed1f9f75fe8fc4d0ff3
-    entity_id: switch.living_room_ceiling_fan_light
-    domain: switch
+    - type: turn_off
+      device_id: e97cd70c4660d3f773bccb57a70ccac8
+      entity_id: switch.living_room_main_lights
+      domain: switch
+    - type: turn_off
+      device_id: b04b8561152faed1f9f75fe8fc4d0ff3
+      entity_id: switch.living_room_ceiling_fan_light
+      domain: switch
   mode: single
 
 #
-#  _  ___ _       _                
-# | |/ (_) |_ ___| |__   ___ _ __  
-# | ' /| | __/ __| '_ \ / _ \ '_ \ 
+#  _  ___ _       _
+# | |/ (_) |_ ___| |__   ___ _ __
+# | ' /| | __/ __| '_ \ / _ \ '_ \
 # | . \| | || (__| | | |  __/ | | |
 # |_|\_\_|\__\___|_| |_|\___|_| |_|
-#                            
+#
 
 - alias: "Light: turn on kitchen when movement"
   trigger:
-  - type: motion
-    platform: device
-    device_id: 3c2b03532a187ebed5d8893e11c636a8
-    entity_id: binary_sensor.lumi_lumi_motion_ac02_ias_zone
-    domain: binary_sensor
+    - type: motion
+      platform: device
+      device_id: 3c2b03532a187ebed5d8893e11c636a8
+      entity_id: binary_sensor.lumi_lumi_motion_ac02_ias_zone
+      domain: binary_sensor
   condition:
-  - condition: or
-    conditions:
-    - condition: state
-      entity_id: input_boolean.busy_in_kitchen
-      state: 'on'
-    - condition: state
-      entity_id: input_boolean.watching_in_living_room
-      state: 'off'
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: input_boolean.busy_in_kitchen
+          state: "on"
+        - condition: state
+          entity_id: input_boolean.watching_in_living_room
+          state: "off"
   action:
-  - type: turn_on
-    device_id: b6ecb1786d89951862e4f0a8301302bd
-    entity_id: switch.kitchen_main_lights
-    domain: switch
+    - type: turn_on
+      device_id: b6ecb1786d89951862e4f0a8301302bd
+      entity_id: switch.kitchen_main_lights
+      domain: switch
   mode: single
 
 - alias: "Light: turn off kitchen when no movement"
   trigger:
-  - type: no_motion
-    platform: device
-    device_id: 3c2b03532a187ebed5d8893e11c636a8
-    entity_id: binary_sensor.lumi_lumi_motion_ac02_ias_zone
-    domain: binary_sensor
-    for:
-      hours: 0
-      minutes: 0
-      seconds: 30
+    - type: no_motion
+      platform: device
+      device_id: 3c2b03532a187ebed5d8893e11c636a8
+      entity_id: binary_sensor.lumi_lumi_motion_ac02_ias_zone
+      domain: binary_sensor
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 30
   condition:
-  - condition: state
-    entity_id: input_boolean.busy_in_kitchen
-    state: 'off'
+    - condition: state
+      entity_id: input_boolean.busy_in_kitchen
+      state: "off"
   action:
-  - type: turn_off
-    device_id: b6ecb1786d89951862e4f0a8301302bd
-    entity_id: switch.kitchen_main_lights
-    domain: switch
+    - type: turn_off
+      device_id: b6ecb1786d89951862e4f0a8301302bd
+      entity_id: switch.kitchen_main_lights
+      domain: switch
   mode: single
 
-#    ____  _        _          
-# / ___|| |_ __ _(_)_ __ ___ 
+#    ____  _        _
+# / ___|| |_ __ _(_)_ __ ___
 # \___ \| __/ _` | | '__/ __|
 #  ___) | || (_| | | |  \__ \
 # |____/ \__\__,_|_|_|  |___/
-#                            
+#
 
 - alias: "Light: Turn on Stairs on movement"
-  description: ''
+  description: ""
   trigger:
-  - type: motion
-    platform: device
-    device_id: efcedc73d27569a5ee11de5eafb7d8b3
-    entity_id: binary_sensor.lumi_lumi_sensor_motion_aq2_ias_zone
-    domain: binary_sensor
-    for:
-      hours: 0
-      minutes: 0
-      seconds: 0
+    - type: motion
+      platform: device
+      device_id: efcedc73d27569a5ee11de5eafb7d8b3
+      entity_id: binary_sensor.lumi_lumi_sensor_motion_aq2_ias_zone
+      domain: binary_sensor
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 0
   condition:
-  - type: is_illuminance
-    condition: device
-    device_id: efcedc73d27569a5ee11de5eafb7d8b3
-    entity_id: sensor.lumi_lumi_sensor_motion_aq2_illuminance
-    domain: sensor
-    below: 8
+    - type: is_illuminance
+      condition: device
+      device_id: efcedc73d27569a5ee11de5eafb7d8b3
+      entity_id: sensor.lumi_lumi_sensor_motion_aq2_illuminance
+      domain: sensor
+      below: 8
   action:
-  - type: turn_on
-    device_id: 2d5eda4942af8d9aca11851d5a04f472
-    entity_id: switch.stairs_main_lights
-    domain: switch
+    - type: turn_on
+      device_id: 2d5eda4942af8d9aca11851d5a04f472
+      entity_id: switch.stairs_main_lights
+      domain: switch
   mode: single
 
 - alias: "Light: Turn off Stairs after no movement"
-  description: ''
+  description: ""
   trigger:
-  - type: no_motion
-    platform: device
-    device_id: efcedc73d27569a5ee11de5eafb7d8b3
-    entity_id: binary_sensor.lumi_lumi_sensor_motion_aq2_ias_zone
-    domain: binary_sensor
+    - type: no_motion
+      platform: device
+      device_id: efcedc73d27569a5ee11de5eafb7d8b3
+      entity_id: binary_sensor.lumi_lumi_sensor_motion_aq2_ias_zone
+      domain: binary_sensor
   condition:
-  - condition: device
-    type: is_on
-    device_id: 2d5eda4942af8d9aca11851d5a04f472
-    entity_id: switch.stairs_main_lights
-    domain: switch
+    - condition: device
+      type: is_on
+      device_id: 2d5eda4942af8d9aca11851d5a04f472
+      entity_id: switch.stairs_main_lights
+      domain: switch
   action:
-  - type: turn_off
-    device_id: 2d5eda4942af8d9aca11851d5a04f472
-    entity_id: switch.stairs_main_lights
-    domain: switch
+    - type: turn_off
+      device_id: 2d5eda4942af8d9aca11851d5a04f472
+      entity_id: switch.stairs_main_lights
+      domain: switch
   mode: single
 
-#    __  __           _              _              _                           
-# |  \/  | __ _ ___| |_ ___ _ __  | |__   ___  __| |_ __ ___   ___  _ __ ___  
-# | |\/| |/ _` / __| __/ _ \ '__| | '_ \ / _ \/ _` | '__/ _ \ / _ \| '_ ` _ \ 
+#    __  __           _              _              _
+# |  \/  | __ _ ___| |_ ___ _ __  | |__   ___  __| |_ __ ___   ___  _ __ ___
+# | |\/| |/ _` / __| __/ _ \ '__| | '_ \ / _ \/ _` | '__/ _ \ / _ \| '_ ` _ \
 # | |  | | (_| \__ \ ||  __/ |    | |_) |  __/ (_| | | | (_) | (_) | | | | | |
 # |_|  |_|\__,_|___/\__\___|_|    |_.__/ \___|\__,_|_|  \___/ \___/|_| |_| |_|
-#                                                                             
+#
 
 - alias: "Light: Turn on master bedroom on movement before sleeping"
   trigger:
-  - type: motion
-    platform: device
-    device_id: 962bc4068d28c98b15f88e0af5aace52
-    entity_id: binary_sensor.lumi_lumi_sensor_motion_aq2_c039e207_ias_zone
-    domain: binary_sensor
+    - type: motion
+      platform: device
+      device_id: 962bc4068d28c98b15f88e0af5aace52
+      entity_id: binary_sensor.lumi_lumi_sensor_motion_aq2_c039e207_ias_zone
+      domain: binary_sensor
   condition:
-  - condition: state
-    entity_id: input_boolean.sleeping
-    state: 'off'  
-  - type: is_illuminance
-    condition: device
-    device_id: 962bc4068d28c98b15f88e0af5aace52
-    entity_id: sensor.lumi_lumi_sensor_motion_aq2_c039e207_illuminance
-    domain: sensor
-    below: 5
+    - condition: state
+      entity_id: input_boolean.sleeping
+      state: "off"
+    - type: is_illuminance
+      condition: device
+      device_id: 962bc4068d28c98b15f88e0af5aace52
+      entity_id: sensor.lumi_lumi_sensor_motion_aq2_c039e207_illuminance
+      domain: sensor
+      below: 5
   action:
-  - type: turn_on
-    device_id: ec0c8c237f75405507b5c3329aebe55c
-    entity_id: light.bedroom_fan_light
-    domain: light
+    - type: turn_on
+      device_id: ec0c8c237f75405507b5c3329aebe55c
+      entity_id: light.bedroom_fan_light
+      domain: light
   mode: single
 
 - alias: "Light: Turn on master bedroom on movement after sleeping"
-  description: ''
+  description: ""
   trigger:
-  - type: motion
-    platform: device
-    device_id: 962bc4068d28c98b15f88e0af5aace52
-    entity_id: binary_sensor.lumi_lumi_sensor_motion_aq2_c039e207_ias_zone
-    domain: binary_sensor
+    - type: motion
+      platform: device
+      device_id: 962bc4068d28c98b15f88e0af5aace52
+      entity_id: binary_sensor.lumi_lumi_sensor_motion_aq2_c039e207_ias_zone
+      domain: binary_sensor
   condition:
-  - type: is_illuminance
-    condition: device
-    device_id: 962bc4068d28c98b15f88e0af5aace52
-    entity_id: sensor.lumi_lumi_sensor_motion_aq2_c039e207_illuminance
-    domain: sensor
-    below: 5
-  - condition: state
-    entity_id: input_boolean.sleeping
-    state: 'on'      
+    - type: is_illuminance
+      condition: device
+      device_id: 962bc4068d28c98b15f88e0af5aace52
+      entity_id: sensor.lumi_lumi_sensor_motion_aq2_c039e207_illuminance
+      domain: sensor
+      below: 5
+    - condition: state
+      entity_id: input_boolean.sleeping
+      state: "on"
   action:
-  - type: turn_on
-    device_id: 641bd8af5ff63ad680e9c782f180565a
-    entity_id: switch.sonoff_1001642d5f
-    domain: switch
+    - type: turn_on
+      device_id: 641bd8af5ff63ad680e9c782f180565a
+      entity_id: switch.sonoff_1001642d5f
+      domain: switch
   mode: single
 
 - alias: "Light: Turn off master bedroom"
-  description: ''
+  description: ""
   trigger:
-  - type: no_motion
-    platform: device
-    device_id: 962bc4068d28c98b15f88e0af5aace52
-    entity_id: binary_sensor.lumi_lumi_sensor_motion_aq2_c039e207_ias_zone
-    domain: binary_sensor
+    - type: no_motion
+      platform: device
+      device_id: 962bc4068d28c98b15f88e0af5aace52
+      entity_id: binary_sensor.lumi_lumi_sensor_motion_aq2_c039e207_ias_zone
+      domain: binary_sensor
   condition:
     - condition: state
       entity_id: input_boolean.busy_in_master_bedroom
-      state: 'off'
+      state: "off"
   action:
-  - type: turn_off
-    device_id: ec0c8c237f75405507b5c3329aebe55c
-    entity_id: light.bedroom_fan_light
-    domain: light
-  - type: turn_off
-    device_id: 641bd8af5ff63ad680e9c782f180565a
-    entity_id: switch.sonoff_1001642d5f
-    domain: switch    
+    - type: turn_off
+      device_id: ec0c8c237f75405507b5c3329aebe55c
+      entity_id: light.bedroom_fan_light
+      domain: light
+    - type: turn_off
+      device_id: 641bd8af5ff63ad680e9c782f180565a
+      entity_id: switch.sonoff_1001642d5f
+      domain: switch
   mode: single
 
-#  _           __ _   
-# | |    ___  / _| |_ 
+#  _           __ _
+# | |    ___  / _| |_
 # | |   / _ \| |_| __|
-# | |__| (_) |  _| |_ 
+# | |__| (_) |  _| |_
 # |_____\___/|_|  \__|
 #
 
 - alias: "Light: Turn on loft on movement"
-  description: ''
+  description: ""
   trigger:
-  - type: motion
-    platform: device
-    device_id: 1475ad7443adcd2f87fe5515e0de8b70
-    entity_id: binary_sensor.lumi_lumi_sensor_motion_aq2_42e6e307_ias_zone
-    domain: binary_sensor
+    - type: motion
+      platform: device
+      device_id: 1475ad7443adcd2f87fe5515e0de8b70
+      entity_id: binary_sensor.lumi_lumi_sensor_motion_aq2_42e6e307_ias_zone
+      domain: binary_sensor
   condition:
-  - type: is_illuminance
-    condition: device
-    device_id: 1475ad7443adcd2f87fe5515e0de8b70
-    entity_id: sensor.lumi_lumi_sensor_motion_aq2_42e6e307_illuminance
-    domain: sensor
-    below: 5
-  - condition: state
-    entity_id: input_boolean.watching_in_loft
-    state: 'off'
+    - type: is_illuminance
+      condition: device
+      device_id: 1475ad7443adcd2f87fe5515e0de8b70
+      entity_id: sensor.lumi_lumi_sensor_motion_aq2_42e6e307_illuminance
+      domain: sensor
+      below: 5
+    - condition: state
+      entity_id: input_boolean.watching_in_loft
+      state: "off"
   action:
-  - type: turn_on
-    device_id: 70aafa9b1a197b098fb51da48359d776
-    entity_id: light.loft_ceiling_fan_light
-    domain: light
+    - type: turn_on
+      device_id: 70aafa9b1a197b098fb51da48359d776
+      entity_id: light.loft_ceiling_fan_light
+      domain: light
   mode: single
 
 - alias: "Light: Turn off loft on no movement"
-  description: ''
+  description: ""
   trigger:
-  - type: no_motion
-    platform: device
-    device_id: 1475ad7443adcd2f87fe5515e0de8b70
-    entity_id: binary_sensor.lumi_lumi_sensor_motion_aq2_42e6e307_ias_zone
-    domain: binary_sensor
+    - type: no_motion
+      platform: device
+      device_id: 1475ad7443adcd2f87fe5515e0de8b70
+      entity_id: binary_sensor.lumi_lumi_sensor_motion_aq2_42e6e307_ias_zone
+      domain: binary_sensor
   condition:
     - condition: state
       entity_id: input_boolean.busy_in_loft
-      state: 'off'
+      state: "off"
   action:
-  - type: turn_off
-    device_id: 70aafa9b1a197b098fb51da48359d776
-    entity_id: light.loft_ceiling_fan_light
-    domain: light
+    - type: turn_off
+      device_id: 70aafa9b1a197b098fb51da48359d776
+      entity_id: light.loft_ceiling_fan_light
+      domain: light
   mode: single
 
-
-#  _____       _                                  
-# | ____|_ __ | |_ _ __ _   ___      ____ _ _   _ 
+#  _____       _
+# | ____|_ __ | |_ _ __ _   ___      ____ _ _   _
 # |  _| | '_ \| __| '__| | | \ \ /\ / / _` | | | |
 # | |___| | | | |_| |  | |_| |\ V  V / (_| | |_| |
 # |_____|_| |_|\__|_|   \__, | \_/\_/ \__,_|\__, |
-#                       |___/               |___/ 
+#                       |___/               |___/
 
-- alias: 'Light: turn on entryway'
-  description: ''
+- alias: "Light: turn on entryway"
+  description: ""
   trigger:
-  - type: motion
-    platform: device
-    device_id: b481c3ac4fc1c01be1491d93ef10b07f
-    entity_id: binary_sensor.lumi_lumi_motion_ac02_c73f4e00_ias_zone
-    domain: binary_sensor
+    - type: motion
+      platform: device
+      device_id: b481c3ac4fc1c01be1491d93ef10b07f
+      entity_id: binary_sensor.lumi_lumi_motion_ac02_c73f4e00_ias_zone
+      domain: binary_sensor
   condition:
-  - condition: or
-    conditions:
-    - condition: sun
-      before: sunrise
-    - condition: sun
-      after: sunset
+    - condition: or
+      conditions:
+        - condition: sun
+          before: sunrise
+        - condition: sun
+          after: sunset
   action:
-  - type: turn_on
-    device_id: 268b9ce12e4d0f93ccb592f532031f70
-    entity_id: switch.entry_way_lamp_on_off
-    domain: switch
+    - type: turn_on
+      device_id: 268b9ce12e4d0f93ccb592f532031f70
+      entity_id: switch.entry_way_lamp_on_off
+      domain: switch
   mode: single
 
-- alias: 'Light: turn off entryway'
-  description: ''
+- alias: "Light: turn off entryway"
+  description: ""
   trigger:
-  - type: no_motion
-    platform: device
-    device_id: b481c3ac4fc1c01be1491d93ef10b07f
-    entity_id: binary_sensor.lumi_lumi_motion_ac02_c73f4e00_ias_zone
-    domain: binary_sensor
+    - type: no_motion
+      platform: device
+      device_id: b481c3ac4fc1c01be1491d93ef10b07f
+      entity_id: binary_sensor.lumi_lumi_motion_ac02_c73f4e00_ias_zone
+      domain: binary_sensor
   condition: []
   action:
-  - type: turn_off
-    device_id: 268b9ce12e4d0f93ccb592f532031f70
-    entity_id: switch.entry_way_lamp_on_off
-    domain: switch
+    - type: turn_off
+      device_id: 268b9ce12e4d0f93ccb592f532031f70
+      entity_id: switch.entry_way_lamp_on_off
+      domain: switch
   mode: single

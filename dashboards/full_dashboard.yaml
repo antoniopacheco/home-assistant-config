@@ -4,7 +4,7 @@ decluttering_templates:
     card:
       card:
         show_header_toggle: false
-        title: '[[name]] automations'
+        title: "[[name]] automations"
         type: entities
       filter:
         include:
@@ -151,7 +151,7 @@ views:
                 secondary:
                   attribute: battery_level
                   name: Battery
-                  unit: '%'
+                  unit: "%"
                 type: custom:multiple-entity-row
               - entity: switch.first_floor_vacuum_mode
               - entity: input_boolean.swiped_first_floor_today
@@ -169,7 +169,7 @@ views:
                 secondary:
                   attribute: battery_level
                   name: Battery
-                  unit: '%'
+                  unit: "%"
                 type: custom:multiple-entity-row
               - entity: switch.first_floor_mop_mode
               - entity: input_boolean.swiped_first_floor_today
@@ -479,7 +479,7 @@ views:
                 name: >-
                   {% set kwh = state("sensor.dishwasher_watts") %} {% set
                   cost_today = 0.1979 * kwh %} Today used {{ kwh }} kWh and cost
-                  ${{ cost_today | round(2) }}. 
+                  ${{ cost_today | round(2) }}.
                 type: custom:template-entity-row
             head:
               entity: binary_sensor.dishwasher
@@ -504,17 +504,17 @@ views:
             type: custom:fold-entity-row
           - entities:
               - icon: mdi:currency-eur
-                name: 'Today''s usage statistics '
+                name: "Today's usage statistics "
                 type: custom:template-entity-row
               - icon: mdi:currency-eur
                 name: >-
                   {{ states("sensor.daily_power")|round(2) }} kWh power → €{{
-                  states("sensor.daily_power_cost")|float|round(2) }}. 
+                  states("sensor.daily_power_cost")|float|round(2) }}.
                 type: custom:template-entity-row
               - icon: mdi:currency-eur
                 name: >-
                   {{ states("sensor.daily_gas")|round(2) }} m³ gas → €{{
-                  states("sensor.daily_gas_cost")|float|round(2) }}. 
+                  states("sensor.daily_gas_cost")|float|round(2) }}.
                 type: custom:template-entity-row
               - icon: mdi:currency-eur
                 name: >-
@@ -523,23 +523,23 @@ views:
                   states("sensor.daily_power_cost")|float)|round(2)}} = €{{
                   (states("sensor.daily_gas_cost")|float +
                   states("sensor.daily_power_cost")|float +
-                  states("sensor.daily_energy_fixed_cost")|float)|round(2) }}. 
+                  states("sensor.daily_energy_fixed_cost")|float)|round(2) }}.
                 type: custom:template-entity-row
               - type: divider
               - icon: mdi:currency-eur
                 name: >-
                   {{ as_timestamp(now()) | timestamp_custom("%B") }}'s usage
-                  statistics 
+                  statistics
                 type: custom:template-entity-row
               - icon: mdi:currency-eur
                 name: >-
                   {{ states("sensor.monthly_power")|round(2) }} kWh power → €{{
-                  states("sensor.monthly_power_cost")|float|round(2) }}. 
+                  states("sensor.monthly_power_cost")|float|round(2) }}.
                 type: custom:template-entity-row
               - icon: mdi:currency-eur
                 name: >-
                   {{ states("sensor.monthly_gas")|round(2) }} m³ gas → €{{
-                  states("sensor.monthly_gas_cost")|float|round(2) }}. 
+                  states("sensor.monthly_gas_cost")|float|round(2) }}.
                 type: custom:template-entity-row
               - icon: mdi:currency-eur
                 name: >-
@@ -549,25 +549,25 @@ views:
                   (states("sensor.monthly_gas_cost")|float +
                   states("sensor.monthly_power_cost")|float +
                   states("sensor.monthly_energy_fixed_cost")|float)|round(2)
-                  }}. 
+                  }}.
                 type: custom:template-entity-row
               - type: divider
               - icon: mdi:currency-eur
-                name: 'Last month''s usage statistics '
+                name: "Last month's usage statistics "
                 type: custom:template-entity-row
               - icon: mdi:currency-eur
                 name: >-
                   {{ states("sensor.monthly_power_last_period")|round(2) }} kWh
                   power → €{{
                   states("sensor.monthly_power_cost_last_period")|float|round(2)
-                  }}. 
+                  }}.
                 type: custom:template-entity-row
               - icon: mdi:currency-eur
                 name: >-
                   {{ state_attr("sensor.monthly_gas", "last_period")|round(2) }}
                   m³ gas → €{{
                   states("sensor.monthly_gas_cost_last_period")|float|round(2)
-                  }}. 
+                  }}.
                 type: custom:template-entity-row
               - icon: mdi:currency-eur
                 name: >-
@@ -579,18 +579,18 @@ views:
                   = €{{ (states("sensor.monthly_gas_cost_last_period")|float +
                   states("sensor.monthly_power_cost_last_period")|float +
                   states("sensor.monthly_energy_fixed_cost_last_period")|float)|round(2)
-                  }}. 
+                  }}.
                 type: custom:template-entity-row
             head:
               entity: sensor.daily_gas
               name: Energy usage
               secondary: >-
                 Today {{ states("sensor.daily_power")|round(2) }} kWh and {{
-                states("sensor.daily_gas")|round(2) }} m³ gas. 
+                states("sensor.daily_gas")|round(2) }} m³ gas.
               state: >-
                 €{{ (states("sensor.daily_gas_cost")|float +
                 states("sensor.daily_power_cost")|float +
-                states("sensor.daily_energy_fixed_cost")|float)|round(2) }} 
+                states("sensor.daily_energy_fixed_cost")|float)|round(2) }}
               type: custom:template-entity-row
             type: custom:fold-entity-row
         show_header_toggle: false
@@ -616,11 +616,11 @@ views:
                 icon: mdi:calendar
               - entity: sensor.uptime
                 icon: mdi:home-assistant
-              - animation: 'off'
+              - animation: "off"
                 entity: sensor.processor_use
                 entity_row: true
                 height: 100%
-                indicator: 'off'
+                indicator: "off"
                 severity:
                   - color: green
                     from: 0
@@ -637,11 +637,11 @@ views:
                     --ha-card-background: 'rgba(0, 0, 0, 0)';
                   }
                 type: custom:bar-card
-              - animation: 'off'
+              - animation: "off"
                 entity: sensor.processor_temperature
                 entity_row: true
                 height: 100%
-                indicator: 'off'
+                indicator: "off"
                 severity:
                   - color: green
                     from: 0
@@ -658,11 +658,11 @@ views:
                     --ha-card-background: 'rgba(0, 0, 0, 0)';
                   }
                 type: custom:bar-card
-              - animation: 'off'
+              - animation: "off"
                 entity: sensor.memory_use_percent
                 entity_row: true
                 height: 100%
-                indicator: 'off'
+                indicator: "off"
                 severity:
                   - color: green
                     from: 0
@@ -679,11 +679,11 @@ views:
                     --ha-card-background: 'rgba(0, 0, 0, 0)';
                   }
                 type: custom:bar-card
-              - animation: 'off'
+              - animation: "off"
                 entity: sensor.disk_use_percent
                 entity_row: true
                 height: 100%
-                indicator: 'off'
+                indicator: "off"
                 severity:
                   - color: green
                     from: 0
@@ -893,39 +893,39 @@ views:
           - entity: binary_sensor.lumi_lumi_sensor_motion_aq2_b0f5e207_ias_zone
             name: Living room
           - entity: sensor.lumi_lumi_sensor_motion_aq2_b0f5e207_illuminance
-            name: ''
+            name: ""
           - entity: sensor.lumi_lumi_sensor_motion_aq2_b0f5e207_power
-            name: ''
+            name: ""
           - entity: binary_sensor.lumi_lumi_motion_ac02_ias_zone
             name: Kitchen
           - entity: sensor.lumi_lumi_motion_ac02_ed454e00_illuminance
-            name: ''
+            name: ""
           - entity: sensor.lumi_lumi_motion_ac02_power
-            name: ''
+            name: ""
           - entity: binary_sensor.lumi_lumi_motion_ac02_c73f4e00_ias_zone
             name: Entryway
           - entity: sensor.lumi_lumi_motion_ac02_c73f4e00_illuminance
-            name: ''
+            name: ""
           - entity: sensor.lumi_lumi_motion_ac02_c73f4e00_power
-            name: ''
+            name: ""
           - entity: binary_sensor.lumi_lumi_sensor_motion_aq2_c039e207_ias_zone
             name: Master bedroom
           - entity: sensor.lumi_lumi_sensor_motion_aq2_c039e207_illuminance
-            name: ''
+            name: ""
           - entity: sensor.lumi_lumi_sensor_motion_aq2_c039e207_power
-            name: ''
+            name: ""
           - entity: binary_sensor.lumi_lumi_motion_ac02_41494e00_ias_zone
             name: Guest bedroom
           - entity: sensor.lumi_lumi_motion_ac02_41494e00_illuminance
-            name: ''
+            name: ""
           - entity: sensor.lumi_lumi_motion_ac02_41494e00_power
-            name: ''
+            name: ""
           - entity: binary_sensor.lumi_lumi_sensor_motion_aq2_42e6e307_ias_zone
             name: Loft
           - entity: sensor.lumi_lumi_sensor_motion_aq2_42e6e307_illuminance
-            name: ''
+            name: ""
           - entity: sensor.lumi_lumi_sensor_motion_aq2_42e6e307_power
-            name: ''
+            name: ""
         show_icon: true
         show_name: true
         state_color: true
@@ -936,15 +936,15 @@ views:
           - entity: binary_sensor.front_door_open
             name: Front door
           - entity: sensor.front_door_battery_2
-            name: ''
+            name: ""
           - entity: binary_sensor.lumi_lumi_sensor_magnet_aq2_24483a08_on_off
             name: Garage door
           - entity: sensor.lumi_lumi_sensor_magnet_aq2_24483a08_power
-            name: ''
+            name: ""
           - entity: binary_sensor.lumi_lumi_sensor_magnet_aq2_on_off
             name: Backyard door
           - entity: sensor.lumi_lumi_sensor_magnet_aq2_power
-            name: ''
+            name: ""
         show_icon: true
         show_name: true
         title: Open/close sensor
@@ -960,27 +960,27 @@ views:
           - entity: sensor.thermostat_1_nativezone_temperature
             name: First Floor
           - entity: sensor.thermostat_1_relative_humidity
-            name: ''
+            name: ""
           - entity: sensor.thermostat_1_system_status
-            name: ''
+            name: ""
           - entity: binary_sensor.thermostat_1_blower_active
-            name: ''
+            name: ""
           - entity: sensor.nest_temperature
             name: Second Floor
           - entity: sensor.nest_humidity
-            name: ''
+            name: ""
           - entity: sensor.nest_humidity
-            name: ''
+            name: ""
           - entity: sensor.nest_humidity
-            name: ''
+            name: ""
           - entity: sensor.lumi_lumi_weather_temperature
             name: Main Bathroom
           - entity: sensor.lumi_lumi_weather_humidity
-            name: ''
+            name: ""
           - entity: sensor.lumi_lumi_weather_pressure
-            name: ''
+            name: ""
           - entity: sensor.lumi_lumi_weather_power
-            name: ''
+            name: ""
         show_icon: true
         show_name: true
         show_state: true
@@ -1002,7 +1002,7 @@ views:
             secondary: >-
               Been on {{
               (states('sensor.hours_bedroom_lights_have_been_on_last_7_days')|float
-              / (7*24) * 100) | round(2) }}% during last 7 days. 
+              / (7*24) * 100) | round(2) }}% during last 7 days.
             state: >-
               {{ states("sensor.hours_bedroom_lights_have_been_on_last_7_days")
               }} h
@@ -1013,7 +1013,7 @@ views:
             secondary: >-
               Been on {{
               (states('sensor.hours_living_room_lights_have_been_on_last_7_days')|float
-              / (7*24) * 100) | round(2) }}% during last 7 days. 
+              / (7*24) * 100) | round(2) }}% during last 7 days.
             state: >-
               {{
               states("sensor.hours_living_room_lights_have_been_on_last_7_days")
@@ -1025,7 +1025,7 @@ views:
             secondary: >-
               Been on {{
               (states('sensor.hours_loft_lights_have_been_on_last_7_days')|float
-              / (7*24) * 100) | round(2) }}% during last 7 days. 
+              / (7*24) * 100) | round(2) }}% during last 7 days.
             state: >-
               {{ states("sensor.hours_loft_lights_have_been_on_last_7_days") }}
               h
@@ -1036,7 +1036,7 @@ views:
             secondary: >-
               Been on {{
               (states('sensor.hours_stair_lights_have_been_on_last_7_days')|float
-              / (7*24) * 100) | round(2) }}% during last 7 days. 
+              / (7*24) * 100) | round(2) }}% during last 7 days.
             state: >-
               {{ states("sensor.hours_stair_lights_have_been_on_last_7_days") }}
               h
@@ -1047,7 +1047,7 @@ views:
             secondary: >-
               Been on {{
               (states('sensor.hours_kitchen_lights_have_been_on_last_7_days')|float
-              / (7*24) * 100) | round(2) }}% during last 7 days. 
+              / (7*24) * 100) | round(2) }}% during last 7 days.
             state: >-
               {{ states("sensor.hours_kitchen_lights_have_been_on_last_7_days")
               }} h
@@ -1058,7 +1058,7 @@ views:
             secondary: >-
               Been on {{
               (states('sensor.hours_entrance_lights_have_been_on_last_7_days')|float
-              / (7*24) * 100) | round(2) }}% during last 7 days. 
+              / (7*24) * 100) | round(2) }}% during last 7 days.
             state: >-
               {{ states("sensor.hours_entrance_lights_have_been_on_last_7_days")
               }} h
@@ -1069,7 +1069,7 @@ views:
             secondary: >-
               Been on {{
               (states('sensor.hours_porche_lights_have_been_on_last_7_days')|float
-              / (7*24) * 100) | round(2) }}% during last 7 days. 
+              / (7*24) * 100) | round(2) }}% during last 7 days.
             state: >-
               {{ states("sensor.hours_porche_lights_have_been_on_last_7_days")
               }} h
@@ -1082,7 +1082,7 @@ views:
               Total is {{ states('sensor.lights_on_total_hours') | round(1) }}
               hours, {{ states('sensor.lights_on_total_kwh') | round(1) }} kWh,
               ${{ (states('sensor.lights_on_total_kwh')|float * 0.21) | round(2)
-              }}. 
+              }}.
             state: '{{ states("sensor.lights_on_total_hours") }} h'
             type: custom:template-entity-row
         title: Lights on last 7 days
@@ -1134,10 +1134,10 @@ views:
         title: Stats
         type: entities
       - entities:
-          - animation: 'off'
+          - animation: "off"
             entity_row: true
             height: 30px
-            indicator: 'off'
+            indicator: "off"
             severity:
               - color: red
                 from: 0
@@ -1156,11 +1156,11 @@ views:
             type: custom:bar-card
             entities:
               - entity: sensor.quarantine_meter_tony
-          - animation: 'off'
+          - animation: "off"
             entity: sensor.quarantine_meter_lloyd
             entity_row: true
             height: 30px
-            indicator: 'off'
+            indicator: "off"
             severity:
               - color: red
                 from: 0
@@ -1188,12 +1188,12 @@ views:
       - entities:
           - entity: sensor.temperature_living_room
             name: First floor
-            secondary: '💦 {{ states(''sensor.thermostat_1_relative_humidity'') }}% '
+            secondary: "💦 {{ states('sensor.thermostat_1_relative_humidity') }}% "
             state: '{{ states("sensor.thermostat_1_nativezone_temperature") }} °F'
             type: custom:template-entity-row
           - entity: sensor.temperature_living_room
             name: Second floor
-            secondary: '💦 {{ states(''sensor.nest_humidity'') }}% '
+            secondary: "💦 {{ states('sensor.nest_humidity') }}% "
             state: '{{ states("sensor.nest_temperature") }} °F'
             type: custom:template-entity-row
           - entity: sensor.temperature_living_room
@@ -1201,7 +1201,7 @@ views:
             secondary: >-
               💦 {{ states('sensor.humidity_bathroom_stats') }}%, ⚖️ {{
               states('sensor.lumi_lumi_weather_pressure') }} hPa, 🔋 {{
-              states('sensor.lumi_lumi_weather_power') }}% 
+              states('sensor.lumi_lumi_weather_power') }}%
             state: '{{ states("sensor.lumi_lumi_weather_temperature") }} °C'
             type: custom:template-entity-row
         title: Temperature sensors

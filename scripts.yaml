@@ -1,172 +1,173 @@
-'1662998445631':
+"1662998445631":
   alias: Close tony blinds
   sequence:
-  - device_id: script_close_tony_blinds
-    domain: cover
-    entity_id: cover.tony_blinds_cover
-    type: set_position
-    position: 15
-'1662998467902':
+    - device_id: script_close_tony_blinds
+      domain: cover
+      entity_id: cover.tony_blinds_cover
+      type: set_position
+      position: 15
+"1662998467902":
   alias: Open tony blinds
   sequence:
-  - device_id: script_open_tony_blinds
-    domain: cover
-    entity_id: cover.tony_blinds_cover
-    type: set_position
-    position: 100
-'1663027774897':
+    - device_id: script_open_tony_blinds
+      domain: cover
+      entity_id: cover.tony_blinds_cover
+      type: set_position
+      position: 100
+"1663027774897":
   alias: Open Living room blinds
   sequence:
-  - parallel:
-    - device_id: 88d0106a945238be7aab3b15670cf742
-      domain: cover
-      entity_id: cover.lv_right_blind_cover
-      type: set_position
-      position: 100
-    - device_id: 8e0fb5700315195152335643850df839
-      domain: cover
-      entity_id: cover.lv_middle_blilnd_cover
-      type: set_position
-      position: 100
-    - device_id: 74c24f170b78d34ca5041126debded32
-      domain: cover
-      entity_id: cover.lv_left_blind_cover
-      type: set_position
-      position: 100
-'1663028119276':
+    - parallel:
+        - device_id: 88d0106a945238be7aab3b15670cf742
+          domain: cover
+          entity_id: cover.lv_right_blind_cover
+          type: set_position
+          position: 100
+        - device_id: 8e0fb5700315195152335643850df839
+          domain: cover
+          entity_id: cover.lv_middle_blilnd_cover
+          type: set_position
+          position: 100
+        - device_id: 74c24f170b78d34ca5041126debded32
+          domain: cover
+          entity_id: cover.lv_left_blind_cover
+          type: set_position
+          position: 100
+"1663028119276":
   alias: close living room blinds
   sequence:
-  - parallel:
-    - device_id: 88d0106a945238be7aab3b15670cf742
-      domain: cover
-      entity_id: cover.lv_right_blind_cover
-      type: set_position
-      position: 0
-    - device_id: 8e0fb5700315195152335643850df839
-      domain: cover
-      entity_id: cover.lv_middle_blilnd_cover
-      type: set_position
-      position: 0
-    - device_id: 74c24f170b78d34ca5041126debded32
-      domain: cover
-      entity_id: cover.lv_left_blind_cover
-      type: set_position
-      position: 0
-'1664048122944':
+    - parallel:
+        - device_id: 88d0106a945238be7aab3b15670cf742
+          domain: cover
+          entity_id: cover.lv_right_blind_cover
+          type: set_position
+          position: 0
+        - device_id: 8e0fb5700315195152335643850df839
+          domain: cover
+          entity_id: cover.lv_middle_blilnd_cover
+          type: set_position
+          position: 0
+        - device_id: 74c24f170b78d34ca5041126debded32
+          domain: cover
+          entity_id: cover.lv_left_blind_cover
+          type: set_position
+          position: 0
+"1664048122944":
   alias: close dining blinds
   sequence:
-  - parallel:
-    - device_id: 2a6b32b02ec3acaefffe58efeff758c5
-      domain: cover
-      entity_id: cover.left_window_dinning_cover
-      type: set_position
-      position: 0
-    - device_id: 07dce117b002761fae8e1b23445e0c83
-      domain: cover
-      entity_id: cover.right_window_dinning_cover
-      type: set_position
-      position: 0
-'1664048194632':
+    - parallel:
+        - device_id: 2a6b32b02ec3acaefffe58efeff758c5
+          domain: cover
+          entity_id: cover.left_window_dinning_cover
+          type: set_position
+          position: 0
+        - device_id: 07dce117b002761fae8e1b23445e0c83
+          domain: cover
+          entity_id: cover.right_window_dinning_cover
+          type: set_position
+          position: 0
+"1664048194632":
   alias: Open dining blinds
   sequence:
-  - parallel:
-    - device_id: 2a6b32b02ec3acaefffe58efeff758c5
-      domain: cover
-      entity_id: cover.left_window_dinning_cover
-      type: set_position
-      position: 100
-    - device_id: 07dce117b002761fae8e1b23445e0c83
-      domain: cover
-      entity_id: cover.right_window_dinning_cover
-      type: set_position
-      position: 100
-'1664049154350':
+    - parallel:
+        - device_id: 2a6b32b02ec3acaefffe58efeff758c5
+          domain: cover
+          entity_id: cover.left_window_dinning_cover
+          type: set_position
+          position: 100
+        - device_id: 07dce117b002761fae8e1b23445e0c83
+          domain: cover
+          entity_id: cover.right_window_dinning_cover
+          type: set_position
+          position: 100
+"1664049154350":
   alias: Living Dining blinds to 50
   sequence:
-  - parallel:
-    - device_id: 74c24f170b78d34ca5041126debded32
-      domain: cover
-      entity_id: cover.lv_left_blind_cover
-      type: set_position
-      position: 50
-    - device_id: 8e0fb5700315195152335643850df839
-      domain: cover
-      entity_id: cover.lv_middle_blilnd_cover
-      type: set_position
-      position: 50
-    - device_id: 88d0106a945238be7aab3b15670cf742
-      domain: cover
-      entity_id: cover.lv_right_blind_cover
-      type: set_position
-      position: 50
-    - device_id: 2a6b32b02ec3acaefffe58efeff758c5
-      domain: cover
-      entity_id: cover.left_window_dinning_cover
-      type: set_position
-      position: 50
-    - device_id: 07dce117b002761fae8e1b23445e0c83
-      domain: cover
-      entity_id: cover.right_window_dinning_cover
-      type: set_position
-      position: 50
+    - parallel:
+        - device_id: 74c24f170b78d34ca5041126debded32
+          domain: cover
+          entity_id: cover.lv_left_blind_cover
+          type: set_position
+          position: 50
+        - device_id: 8e0fb5700315195152335643850df839
+          domain: cover
+          entity_id: cover.lv_middle_blilnd_cover
+          type: set_position
+          position: 50
+        - device_id: 88d0106a945238be7aab3b15670cf742
+          domain: cover
+          entity_id: cover.lv_right_blind_cover
+          type: set_position
+          position: 50
+        - device_id: 2a6b32b02ec3acaefffe58efeff758c5
+          domain: cover
+          entity_id: cover.left_window_dinning_cover
+          type: set_position
+          position: 50
+        - device_id: 07dce117b002761fae8e1b23445e0c83
+          domain: cover
+          entity_id: cover.right_window_dinning_cover
+          type: set_position
+          position: 50
 going_to_sleep:
   alias: going to sleep
   sequence:
-  - service: input_boolean.turn_on
-    data: {}
-    target:
-      entity_id: input_boolean.sleep_mode
-  - service: notify.alexa_media_jesus_s_echo_dot_bedroom
-    data:
-      message: '{% set backdoor_opened = ''opened'' if is_state(''binary_sensor.lumi_lumi_sensor_magnet_aq2_on_off'',
-        ''on'') else ''closed'' %} {% set garage_entrance_door_opened = ''opened''
-        if is_state(''binary_sensor.lumi_lumi_sensor_magnet_aq2_24483a08_on_off'',
-        ''on'') else ''closed'' %} {% set front_door_opened = ''opened'' if is_state(''binary_sensor.front_door_open''
-        , ''is_open'') else ''closed'' %} {% set front_door_locked = '' and locked''
-        if is_state(''lock.front_door'' , ''locked'') else ''and locked'' %} {% set
-        garage_door_closed = ''opened'' if is_state(''cover.garage_door'' , ''opened'')
-        else ''closed'' %}  Good night, the front door is {{front_door_opened}} {{front_door_locked}};
-        backdoor is {{backdoor_opened}}; garage entrance door is {{garage_entrance_door_opened}};
-        the garage door is{{garage_door_closed}}
-
-        '
+    - service: input_boolean.turn_on
+      data: {}
+      target:
+        entity_id: input_boolean.sleep_mode
+    - service: notify.alexa_media_jesus_s_echo_dot_bedroom
       data:
-        type: announce
-  - service: climate.set_temperature
-    data:
-      hvac_mode: cool
-      temperature: 70
-    target:
-      device_id: 46c02aac717384b4c4b8fff03b5d9ee8
-  - service: fan.set_percentage
-    data:
-      percentage: 75
-    target:
-      entity_id: fan.master_bedroom_ceiling_fan
-  - service: automation.turn_off
-    data:
-      stop_actions: false
-    target:
-      entity_id: automation.turn_on_master_bedroom_light_on_movement
-  - type: turn_off
-    device_id: b04b8561152faed1f9f75fe8fc4d0ff3
-    entity_id: switch.living_room_ceiling_fan_light
-    domain: switch
-  - type: turn_off
-    device_id: 84368169a49b16098dea37da70df8d29
-    entity_id: fan.living_room_ceiling_fan
-    domain: fan
-  - type: turn_off
-    device_id: e97cd70c4660d3f773bccb57a70ccac8
-    entity_id: switch.living_room_main_lights
-    domain: switch
-  - service: automation.turn_on
-    data: {}
-    target:
-      entity_id: automation.new_automation
-  - service: automation.turn_on
-    data: {}
-    target:
-      entity_id: automation.master_bedroom_night_lightoff
+        message:
+          "{% set backdoor_opened = 'opened' if is_state('binary_sensor.lumi_lumi_sensor_magnet_aq2_on_off',
+          'on') else 'closed' %} {% set garage_entrance_door_opened = 'opened'
+          if is_state('binary_sensor.lumi_lumi_sensor_magnet_aq2_24483a08_on_off',
+          'on') else 'closed' %} {% set front_door_opened = 'opened' if is_state('binary_sensor.front_door_open'
+          , 'is_open') else 'closed' %} {% set front_door_locked = ' and locked'
+          if is_state('lock.front_door' , 'locked') else 'and locked' %} {% set
+          garage_door_closed = 'opened' if is_state('cover.garage_door' , 'opened')
+          else 'closed' %}  Good night, the front door is {{front_door_opened}} {{front_door_locked}};
+          backdoor is {{backdoor_opened}}; garage entrance door is {{garage_entrance_door_opened}};
+          the garage door is{{garage_door_closed}}
+
+          "
+        data:
+          type: announce
+    - service: climate.set_temperature
+      data:
+        hvac_mode: cool
+        temperature: 70
+      target:
+        device_id: 46c02aac717384b4c4b8fff03b5d9ee8
+    - service: fan.set_percentage
+      data:
+        percentage: 75
+      target:
+        entity_id: fan.master_bedroom_ceiling_fan
+    - service: automation.turn_off
+      data:
+        stop_actions: false
+      target:
+        entity_id: automation.turn_on_master_bedroom_light_on_movement
+    - type: turn_off
+      device_id: b04b8561152faed1f9f75fe8fc4d0ff3
+      entity_id: switch.living_room_ceiling_fan_light
+      domain: switch
+    - type: turn_off
+      device_id: 84368169a49b16098dea37da70df8d29
+      entity_id: fan.living_room_ceiling_fan
+      domain: fan
+    - type: turn_off
+      device_id: e97cd70c4660d3f773bccb57a70ccac8
+      entity_id: switch.living_room_main_lights
+      domain: switch
+    - service: automation.turn_on
+      data: {}
+      target:
+        entity_id: automation.new_automation
+    - service: automation.turn_on
+      data: {}
+      target:
+        entity_id: automation.master_bedroom_night_lightoff
   mode: single
   icon: mdi:chat-sleep-outline

@@ -16,7 +16,7 @@ busy_in_living_room:
 
 busy_in_master_bedroom:
   name: Someone is bussy at the master edroom
-  icon: mdi:book-account  
+  icon: mdi:book-account
 
 sleeping:
   name: "sleep time"
@@ -28,7 +28,7 @@ guest_sleeping:
 
 busy_in_loft:
   name: Someone is bussy at the loft
-  icon: mdi:sofa  
+  icon: mdi:sofa
 
 watching_in_living_room:
   name: Someone is watching on living room
@@ -36,7 +36,7 @@ watching_in_living_room:
 
 watching_in_loft:
   name: Someone is watching on loft
-  icon: mdi:television    
+  icon: mdi:television
 
 cleaned_today:
   name: Vacuum cleaned today
@@ -48,4 +48,4 @@ vacation_mode:
 
 guest_mode:
   name: Guest mode
-  icon: mdi:human-male-female 
+  icon: mdi:human-male-female

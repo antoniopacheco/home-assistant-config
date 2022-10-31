@@ -16,7 +16,6 @@
 
 - platform: template
   sensors:
-
     fridge_watts:
       value_template: >
         {{ states("sensor.refrigerator_power") | float("Unavailable") }}
@@ -40,7 +39,7 @@
     #   value_template: >
     #     {{ states("sensor.dishwasher_power") | float("Unavailable") }}
     #   unit_of_measurement: Watt
-    #   friendly_name: Dishwasher usage            
+    #   friendly_name: Dishwasher usage
 
     # count_automations:
     #   icon_template: mdi:autorenew
@@ -185,7 +184,7 @@
     loft_tv_volume:
       value_template: >
         {{ state_attr("media_player.loft", "volume_level") }}
-      unit_of_measurement: "%"      
+      unit_of_measurement: "%"
 
 #   ___  _   _
 #  / _ \| |_| |__   ___ _ __ ___
@@ -356,7 +355,7 @@
   type: count
   duration:
     days: 7
-  end: "{{ now() }}"  
+  end: "{{ now() }}"
 
 - platform: history_stats
   name: Quarantine meter Tony

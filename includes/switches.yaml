@@ -28,4 +28,4 @@
         entity_id: vacuum.braava_jet
       turn_off:
         service: vacuum.return_to_base
-        entity_id: vacuum.braava_jet        
+        entity_id: vacuum.braava_jet
