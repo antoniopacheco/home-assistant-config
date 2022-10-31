@@ -1,0 +1,216 @@
+#-
+#                  _             _                  _ _       _
+#   ___ ___  _ __ | |_ _ __ ___ | |    _____      _(_) |_ ___| |__   ___  ___
+#  / __/ _ \| '_ \| __| '__/ _ \| |   / __\ \ /\ / / | __/ __| '_ \ / _ \/ __|
+# | (_| (_) | | | | |_| | | (_) | |   \__ \\ V  V /| | || (__| | | |  __/\__ \
+#  \___\___/|_| |_|\__|_|  \___/|_|___|___/ \_/\_/ |_|\__\___|_| |_|\___||___/
+#                                |_____|
+#
+
+
+#  _  ___ _       _                
+# | |/ (_) |_ ___| |__   ___ _ __  
+# | ' /| | __/ __| '_ \ / _ \ '_ \ 
+# | . \| | || (__| | | |  __/ | | |
+# |_|\_\_|\__\___|_| |_|\___|_| |_|
+#   
+- alias: "Control switches: mark kitchen busy"
+  description: when clicking the button busy in kitchen is on
+  trigger:
+  - device_id: 1138a5f9bce2aaed6b7b75cba6cdabf6
+    domain: zha
+    platform: device
+    type: remote_button_short_press
+    subtype: open
+  - device_id: aee89585cb6a8d9bf73b98bef7f0387c
+    domain: zha
+    platform: device
+    type: remote_button_short_press
+    subtype: open
+  condition: []
+  action:
+  - service: input_boolean.turn_on
+    data: {}
+    target:
+      entity_id: input_boolean.busy_in_kitchen
+  - type: turn_on
+    device_id: b6ecb1786d89951862e4f0a8301302bd
+    entity_id: switch.kitchen_main_lights
+    domain: switch
+  - delay: 00:15:00
+  - service: automation.trigger
+    data: {}
+    target:
+      entity_id: automation.control_switches_mark_kitchen_as_not_bussy
+  mode: single
+
+- alias: "Control switches: mark kitchen as not bussy"
+  description: make busy in kitchen status to be null
+  trigger:
+  - device_id: 1138a5f9bce2aaed6b7b75cba6cdabf6
+    domain: zha
+    platform: device
+    type: remote_button_short_press
+    subtype: close
+  - device_id: aee89585cb6a8d9bf73b98bef7f0387c
+    domain: zha
+    platform: device
+    type: remote_button_short_press
+    subtype: close
+  condition: []
+  action:
+  - type: turn_off
+    device_id: b6ecb1786d89951862e4f0a8301302bd
+    entity_id: switch.kitchen_main_lights
+    domain: switch
+  - service: input_boolean.turn_off
+    data: {}
+    target:
+      entity_id: input_boolean.busy_in_kitchen
+  mode: single
+
+#    __  __           _              _              _                           
+# |  \/  | __ _ ___| |_ ___ _ __  | |__   ___  __| |_ __ ___   ___  _ __ ___  
+# | |\/| |/ _` / __| __/ _ \ '__| | '_ \ / _ \/ _` | '__/ _ \ / _ \| '_ ` _ \ 
+# | |  | | (_| \__ \ ||  __/ |    | |_) |  __/ (_| | | | (_) | (_) | | | | | |
+# |_|  |_|\__,_|___/\__\___|_|    |_.__/ \___|\__,_|_|  \___/ \___/|_| |_| |_|
+#      
+- alias: "Control switches: ready to sleep"
+  description: prepares room to sleep and read Alexa notification of door devices
+    status
+  trigger:
+  - device_id: c793e4ce34753abd80b6a18c6df7bd2c
+    domain: zha
+    platform: device
+    type: remote_button_short_press
+    subtype: close
+  condition: []
+  variables:
+    guest_mode: "{{ states('input_boolean.guest_mode') }}"
+  action:
+  - service: input_boolean.turn_on
+    data: {}
+    target:
+      entity_id: input_boolean.sleeping  
+  - service: notify.alexa_media_jesus_s_echo_dot_bedroom
+    data:
+      message: '{% set backdoor_opened = ''opened'' if is_state(''binary_sensor.lumi_lumi_sensor_magnet_aq2_on_off'',
+        ''on'') else ''closed'' %} {% set garage_entrance_door_opened = ''opened''
+        if is_state(''binary_sensor.lumi_lumi_sensor_magnet_aq2_24483a08_on_off'',
+        ''on'') else ''closed'' %} {% set front_door_opened = ''opened'' if is_state(''binary_sensor.front_door_open''
+        , ''is_open'') else ''closed'' %} {% set front_door_locked = '' and locked''
+        if is_state(''lock.front_door'' , ''locked'') else ''and locked'' %} {% set
+        garage_door_closed = ''opened'' if is_state(''cover.garage_door'' , ''opened'')
+        else ''closed'' %}  Good night, the front door is {{front_door_opened}} {{front_door_locked}};
+        backdoor is {{backdoor_opened}}; garage entrance door is {{garage_entrance_door_opened}};
+        the garage door is{{garage_door_closed}}
+
+        '
+      data:
+        type: announce
+  - service: climate.set_temperature
+    data:
+      hvac_mode: cool
+      temperature: 70
+    target:
+      device_id: 46c02aac717384b4c4b8fff03b5d9ee8
+  - service: fan.set_percentage
+    data:
+      percentage: 75
+    target:
+      entity_id: fan.master_bedroom_ceiling_fan
+  - if:
+      - condition: state
+        entity_id: input_boolean.guest_mode
+        state: "off"
+    then:
+      - type: turn_off
+        device_id: b04b8561152faed1f9f75fe8fc4d0ff3
+        entity_id: switch.living_room_ceiling_fan_light
+        domain: switch
+      - type: turn_off
+        device_id: 84368169a49b16098dea37da70df8d29
+        entity_id: fan.living_room_ceiling_fan
+        domain: fan
+      - type: turn_off
+        device_id: e97cd70c4660d3f773bccb57a70ccac8
+        entity_id: switch.living_room_main_lights
+        domain: switch
+  mode: single
+
+#  _     _       _               ____                       
+# | |   (_)_   _(_)_ __   __ _  |  _ \ ___   ___  _ __ ___  
+# | |   | \ \ / / | '_ \ / _` | | |_) / _ \ / _ \| '_ ` _ \ 
+# | |___| |\ V /| | | | | (_| | |  _ < (_) | (_) | | | | | |
+# |_____|_| \_/ |_|_| |_|\__, | |_| \_\___/ \___/|_| |_| |_|
+#                        |___/                              
+
+- alias: "Control switches: open blinds"
+  description: ''
+  trigger:
+  - device_id: 4867819545acb4446df7f0ee8dc34188
+    domain: zha
+    platform: device
+    type: remote_button_short_press
+    subtype: open
+  condition: []
+  action:
+    - parallel:
+      - service: cover.open_cover
+        data: {}
+        target:
+          entity_id: cover.living_room_blinds
+      - service: cover.open_cover
+        data: {}
+        target:
+          entity_id: cover.dining_blinds
+  mode: single
+
+- alias: "Control switches: close blinds"
+  description: ''
+  trigger:
+  - device_id: 4867819545acb4446df7f0ee8dc34188
+    domain: zha
+    platform: device
+    type: remote_button_short_press
+    subtype: close
+  condition: []
+  action:
+    - parallel:
+      - service: cover.close_cover
+        data: {}
+        target:
+          entity_id: cover.living_room_blinds
+      - service: cover.close_cover
+        data: {}
+        target:
+          entity_id: cover.dining_blinds
+  mode: single
+
+- alias: "Control switches: half open blinds"
+  description: ''
+  trigger:
+  - device_id: 4867819545acb4446df7f0ee8dc34188
+    domain: zha
+    platform: device
+    type: remote_button_long_release
+    subtype: open
+  - device_id: 4867819545acb4446df7f0ee8dc34188
+    domain: zha
+    platform: device
+    type: remote_button_long_release
+    subtype: close
+  condition: []
+  action:
+    - parallel:
+      - service: cover.set_cover_position
+        entity_id: cover.living_room_blinds
+        data: {
+          position: 50
+        }
+      - service: cover.set_cover_position
+        entity_id: cover.dining_blinds
+        data: {
+          position: 50
+        }    
+  mode: single

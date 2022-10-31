@@ -1,0 +1,65 @@
+#-
+#              _   _  __ _           _   _
+#  _ __   ___ | |_(_)/ _(_) ___ __ _| |_(_) ___  _ __  ___
+# | '_ \ / _ \| __| | |_| |/ __/ _` | __| |/ _ \| '_ \/ __|
+# | | | | (_) | |_| |  _| | (_| (_| | |_| | (_) | | | \__ \
+# |_| |_|\___/ \__|_|_| |_|\___\__,_|\__|_|\___/|_| |_|___/
+#
+#
+
+#        _                
+#   __ _| | _____  ____ _ 
+#  / _` | |/ _ \ \/ / _` |
+# | (_| | |  __/>  < (_| |
+#  \__,_|_|\___/_/\_\__,_|
+#                         
+- alias: "Notifications: Washer is done"
+  description: Send notification to alexa when laundry is done
+  trigger:
+  - type: turned_on
+    platform: device
+    device_id: 8d6e03b47a9406ee35459588a713ce9f
+    entity_id: binary_sensor.washer_wash_completed
+    domain: binary_sensor
+  condition: []
+  action:
+  - service: notify.alexa_media_everywhere
+    data:
+      data:
+        type: announce
+      message: Washer is done doing laundry
+  mode: single
+
+- alias: "Notifications: dyer is done"
+  description: Send notification to alexa when laundry is done
+  trigger:
+  - type: turned_on
+    platform: device
+    device_id: 523f0fb01b184dea0bad7ecfb9b6552a
+    entity_id: binary_sensor.dryer_dry_completed
+    domain: binary_sensor
+  condition: []
+  action:
+  - service: notify.alexa_media_everywhere
+    data:
+      message: Dryer is done
+      data:
+        type: announce
+  mode: single
+
+- alias: "Notifications: dishwasher is done"
+  description: Send notification to alexa when dishwasher is done
+  trigger:
+  - type: turned_off
+    platform: device
+    device_id: 4600d3f0392dd39f2f1029862db62605
+    entity_id: switch.dishwasher
+    domain: switch
+  condition: []
+  action:
+  - service: notify.alexa_media_everywhere
+    data:
+      message: Dishwasher is done
+      data:
+        type: announce
+  mode: single  

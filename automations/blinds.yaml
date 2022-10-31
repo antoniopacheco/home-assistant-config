@@ -1,0 +1,53 @@
+#  ____  _ _           _     
+# | __ )| (_)_ __   __| |___ 
+# |  _ \| | | '_ \ / _` / __|
+# | |_) | | | | | | (_| \__ \
+# |____/|_|_|_| |_|\__,_|___/
+#                            
+
+- alias: "Blinds: Open on sun rise"
+  trigger:
+  - platform: sun
+    event: sunrise
+    offset: 0
+  condition:
+    - condition: state
+      entity_id: input_boolean.vacation_mode
+      state: 'off'
+  action:
+    - parallel:
+      - service: cover.open_cover
+        data: {}
+        target:
+          entity_id: cover.living_room_blinds
+      - service: cover.open_cover
+        data: {}
+        target:
+          entity_id: cover.dining_blinds
+      - service: cover.open_cover
+        data: {}
+        target:
+          entity_id: cover.tony_blinds_cover        
+  mode: single
+
+- alias: "Blinds: Close on sunset"
+  trigger:
+  - platform: sun
+    event: sunset
+    offset: 0
+  condition: []
+  action:
+  - parallel:
+    - service: cover.close_cover
+      data: {}
+      target:
+        entity_id: cover.living_room_blinds
+    - service: cover.close_cover
+      data: {}
+      target:
+        entity_id: cover.dining_blinds
+    - service: cover.close_cover
+      data: {}
+      target:
+        entity_id: cover.tony_blinds_cover        
+  mode: single

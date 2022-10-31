@@ -1,0 +1,87 @@
+# Loads default set of integrations. Do not remove.
+default_config:
+
+# Text to speech
+tts:
+  - platform: google_translate
+
+script: !include scripts.yaml
+scene: !include scenes.yaml
+
+####################################################
+#                                                  #
+#                   Receiver                       #
+#                                                  #
+####################################################
+media_player:
+  - platform: onkyo
+    host: 192.168.50.27
+    name: receiver
+    sources:
+      dvd: DVD
+      video3: Game
+      cbl: Cable
+      strm-box: StreamBox
+      pc: PC
+      aux1: Aux
+      cd: CD
+      tv: TV
+      phono: Phono
+      am: Tuner
+      net: Net
+      bluetooth: Bluetooth
+
+####################################################
+#                                                  #
+#                   Nest.                          #
+#                                                  #
+####################################################
+# Example configuration.yaml entry
+nest:
+  client_id: 171525182856-3ptatjhc6k5drs30mde6uqc6mgneglve.apps.googleusercontent.com
+  client_secret: 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
+  # "Project ID" in the Device Access Console (not Cloud Project ID!)
+  project_id: aa4c2a9d-be43-423b-8afd-09ba9dd63926
+
+####################################################
+#                                                  #
+#                  Automations                     #
+#                                                  #
+####################################################
+# https://www.home-assistant.io/integrations/automation/
+# automation: !include automations.yaml
+automation: !include_dir_merge_list automations
+####################################################
+#                                                  #
+#                  Spotcast.                       #
+#                                                  #
+####################################################
+spotcast:
+  sp_dc: !secret tony_sp_dc
+  sp_key: !secret tony_sp_key
+  country: US
+  accounts:
+    tony:
+      sp_dc: !secret tony_sp_dc
+      sp_key: !secret tony_sp_key
+    # lloyd:
+    #   sp_dc: !secret lloyd_sp_dc
+    #   sp_key: !secret lloyd_sp_key
+
+####################################################
+#                                                  #
+#                  frontend.                       #
+#                                                  #
+####################################################
+frontend:
+  themes: !include_dir_merge_named themes
+
+sensor: !include includes/sensors.yaml
+binary_sensor: !include includes/binary_sensors.yaml
+
+# Inputs
+input_datetime: !include includes/input_datetimes.yaml
+input_boolean: !include includes/input_booleans.yaml
+
+#Others
+switch: !include includes/switches.yaml
