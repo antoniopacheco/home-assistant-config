@@ -14,7 +14,12 @@
 <!-- start-automations -->
 ## Automations
 1. [Light Automations](#lights-automations) (15 automations)
-2. [Blinds Automations](#blinds-automations) (2 automations)
+2. [Control switches](#control-switches)
+3. [Blinds Automations](#blinds-automations) (6 automations)
+4. [Media Player Automations](#media-player) (4 automations)
+5. [Notifications](#notifications) (3 automations)
+6. [other Automations](#other-automations) (8 automations)
+
 
 
 ### Lights automations
@@ -61,6 +66,51 @@
 - Mark [kitchen as bussy and turn on lights](https://github.com/antoniopacheco/home-assistant-config/blob/develop/automations/control_switches.yaml#L17) for 15 minutes when clicking button
 
 - Mark [kitchen as not bussy and turn off lights](https://github.com/antoniopacheco/home-assistant-config/blob/develop/automations/control_switches.yaml#L17) when clicking button
+
+#### Master bedroom
+- Ready to sleep [Automation](https://github.com/antoniopacheco/home-assistant-config/blob/develop/automations/control_switches.yaml#L78)
+    - adjust temperature
+    - turn on fan
+    - set [sleep mode](#sleeping) on
+    - turn off other fans and lights if [guest mode](#guest-mode) is off
+
+#### Living room
+- [open blinds](https://github.com/antoniopacheco/home-assistant-config/blob/develop/automations/control_switches.yaml#L150)
+- [close blinds](https://github.com/antoniopacheco/home-assistant-config/blob/develop/automations/control_switches.yaml#L171)
+- [set blinds to 50%](https://github.com/antoniopacheco/home-assistant-config/blob/develop/automations/control_switches.yaml#L192) with press and hold
+
+### Media player
+#### Living Room
+- [watching](https://github.com/antoniopacheco/home-assistant-config/blob/develop/automations/media_player.yaml#L18) tv on living room
+    - turn on receiver
+    - turn off living room lights
+    - close blinds if is before sunset
+    - turn off kitchen lights if not [busy](#busy-in-kitchen)
+    - set [watching in living room](#watching-in-living-room) true
+- [stop watching](https://github.com/antoniopacheco/home-assistant-config/blob/develop/automations/media_player.yaml#L63) tv on living room
+    - set [watching in living room](#watching-in-living-room) false
+
+#### Loft
+- [watching](https://github.com/antoniopacheco/home-assistant-config/blob/develop/automations/media_player.yaml#L89) tv on loft
+    - set [watching in loft](#watching-in-the-loft) to true
+    - turn off lights if not [busy in loft](#busy-in-loft)
+- [stop watching](https://github.com/antoniopacheco/home-assistant-config/blob/develop/automations/media_player.yaml#L118) tv on loft
+    - set [watching in loft](#watching-in-the-loft) to false
+
+### Notifications
+#### Alexa notifications
+- [notify](https://github.com/antoniopacheco/home-assistant-config/blob/develop/automations/notifications.yaml#L17) via alexa when washer is done
+
+- [notify](https://github.com/antoniopacheco/home-assistant-config/blob/develop/automations/notifications.yaml#L34) via alexa when dryer is done
+
+- [notify](https://github.com/antoniopacheco/home-assistant-config/blob/develop/automations/notifications.yaml#L51) via alexa when dish washer is done
+### Other Automations
+you can see a list of other [utilities automations](https://github.com/antoniopacheco/home-assistant-config/blob/develop/automations/utilities.yaml) to update the start and end date of several services like:
+- sprinklers
+- dishwasher
+- washer
+- dryer
+
 
 <!-- end-automations -->
 
