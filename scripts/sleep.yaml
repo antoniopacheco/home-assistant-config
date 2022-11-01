@@ -1,0 +1,70 @@
+---
+going_to_sleep:
+  alias: going to sleep
+  variables:
+    guest_mode: "{{ states('input_boolean.guest_mode') }}"
+  sequence:
+    - service: input_boolean.turn_on
+      data: {}
+      target:
+        entity_id: input_boolean.sleeping
+    - service: input_boolean.turn_off
+      data: {}
+      target:
+        entity_id: input_boolean.busy_in_master_bedroom
+    - service: notify.alexa_media_jesus_s_echo_dot_bedroom
+      data:
+        message:
+          "{% set backdoor_opened = 'opened' if is_state('binary_sensor.lumi_lumi_sensor_magnet_aq2_on_off',
+          'on') else 'closed' %} {% set garage_entrance_door_opened = 'opened'
+          if is_state('binary_sensor.lumi_lumi_sensor_magnet_aq2_24483a08_on_off',
+          'on') else 'closed' %} {% set front_door_opened = 'opened' if is_state('binary_sensor.front_door_open'
+          , 'is_open') else 'closed' %} {% set front_door_locked = ' and locked'
+          if is_state('lock.front_door' , 'locked') else 'and locked' %} {% set
+          garage_door_closed = 'opened' if is_state('cover.garage_door' , 'opened')
+          else 'closed' %}  Good night, the front door is {{front_door_opened}} {{front_door_locked}};
+          backdoor is {{backdoor_opened}}; garage entrance door is {{garage_entrance_door_opened}};
+          the garage door is{{garage_door_closed}}
+
+          "
+        data:
+          type: announce
+    - service: climate.set_temperature
+      data:
+        hvac_mode: cool
+        temperature: 70
+      target:
+        device_id: 46c02aac717384b4c4b8fff03b5d9ee8
+    - service: fan.set_percentage
+      data:
+        percentage: 75
+      target:
+        entity_id: fan.master_bedroom_ceiling_fan
+    - if:
+        - condition: state
+          entity_id: binary_sensor.lumi_lumi_sensor_motion_aq2_c039e207_ias_zone
+          state: "off"
+      then:
+        - type: turn_off
+          device_id: ec0c8c237f75405507b5c3329aebe55c
+          entity_id: light.bedroom_fan_light
+          domain: light
+    - if:
+        - condition: state
+          entity_id: input_boolean.guest_mode
+          state: "off"
+      then:
+        - type: turn_off
+          device_id: b04b8561152faed1f9f75fe8fc4d0ff3
+          entity_id: switch.living_room_ceiling_fan_light
+          domain: switch
+        - type: turn_off
+          device_id: 84368169a49b16098dea37da70df8d29
+          entity_id: fan.living_room_ceiling_fan
+          domain: fan
+        - type: turn_off
+          device_id: e97cd70c4660d3f773bccb57a70ccac8
+          entity_id: switch.living_room_main_lights
+          domain: switch
+  mode: single
+  icon: mdi:chat-sleep-outline

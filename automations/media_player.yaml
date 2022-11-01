@@ -43,8 +43,10 @@
         - condition: sun
           before: sunset
       then:
-        - service: script.1663028119276
+        - service: cover.close_cover
           data: {}
+          target:
+            entity_id: cover.living_room_blinds
     - service: input_boolean.turn_on
       data: {}
       target:
