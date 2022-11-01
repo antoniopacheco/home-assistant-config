@@ -41,9 +41,9 @@
     #   unit_of_measurement: Watt
     #   friendly_name: Dishwasher usage
 
-    # count_automations:
-    #   icon_template: mdi:autorenew
-    #   value_template: "{{ states.automation | count }}"
+    count_automations:
+      icon_template: mdi:autorenew
+      value_template: "{{ states.automation | count }}"
 
     count_scripts:
       icon_template: mdi:script-text-outline
