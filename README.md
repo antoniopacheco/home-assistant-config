@@ -130,6 +130,8 @@ Notifications automations [here](https://github.com/antoniopacheco/home-assistan
 
 #### Alexa notifications
 
+All alexa notifications are muted when sleep mode is on
+
 - notify via Alexa when the washer is done
 
 - notify via Alexa when the dryer is done

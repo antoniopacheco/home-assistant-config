@@ -22,7 +22,10 @@
       device_id: 8d6e03b47a9406ee35459588a713ce9f
       entity_id: binary_sensor.washer_wash_completed
       domain: binary_sensor
-  condition: []
+  condition:
+    - condition: state
+      entity_id: input_boolean.sleeping
+      state: "off"
   action:
     - service: notify.alexa_media_everywhere
       data:
@@ -39,7 +42,10 @@
       device_id: 523f0fb01b184dea0bad7ecfb9b6552a
       entity_id: binary_sensor.dryer_dry_completed
       domain: binary_sensor
-  condition: []
+  condition:
+    - condition: state
+      entity_id: input_boolean.sleeping
+      state: "off"
   action:
     - service: notify.alexa_media_everywhere
       data:
@@ -56,7 +62,10 @@
       device_id: 4600d3f0392dd39f2f1029862db62605
       entity_id: switch.dishwasher
       domain: switch
-  condition: []
+  condition:
+    - condition: state
+      entity_id: input_boolean.sleeping
+      state: "off"
   action:
     - service: notify.alexa_media_everywhere
       data:
