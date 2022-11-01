@@ -130,11 +130,11 @@ Notifications automations [here](https://github.com/antoniopacheco/home-assistan
 
 #### Alexa notifications
 
-- [notify](#alexa-notifications) via Alexa when the washer is done
+- notify via Alexa when the washer is done
 
-- [notify](#alexa-notifications) via Alexa when the dryer is done
+- notify via Alexa when the dryer is done
 
-- [notify](#alexa-notifications) via Alexa when the dishwasher is done
+- notify via Alexa when the dishwasher is done
 
 ### Other Automations
 
@@ -220,3 +220,33 @@ Whether the floor was [cleaned](https://github.com/antoniopacheco/home-assistant
 Whether if the [guest](https://github.com/antoniopacheco/home-assistant-config/blob/develop/includes/input_booleans.yaml#L50)[mode is](https://github.com/antoniopacheco/home-assistant-config/blob/develop/includes/input_booleans.yaml#L50) on](https://github.com/antoniopacheco/home-assistant-config/blob/develop/includes/input_booleans.yaml#L50) or not
 
 ## My Devices
+
+### Hardware
+- Raspberry Pi 4
+- Zigbee/zwave adapter [HUSBZB-1](https://amzn.to/3DqKy90)
+
+### Sensors
+
+- Motion Sensos: [Aqara Motion Sensor](https://amzn.to/3zvXmtC)
+- Door and window sensor: [Aqara Door and Window sensor](https://amzn.to/3NoM0wW)
+- Temperature sensor: [Aqara temperature and Humidity Sensor](https://amzn.to/3SU46bt)
+- buttons: Ikea Tradfri
+
+### Lights
+- [Lutron caseta](https://amzn.to/3SVCQt1)
+- Inovelli series blue
+- night lights [GE](https://amzn.to/3fsruPK)
+- smart switches [sonoff s31](https://amzn.to/3SU8tmT)
+
+### Media
+ - TV's : [Samsung the frame](https://amzn.to/3fljZdp)
+ - Voice assistant: [Alexa echo dot](https://amzn.to/3gV0yIB)
+ - [Apple TV](https://amzn.to/3sTpToU)
+
+### Appliances
+ - Dishwasher: Smart Linear Wash 39dBA Dishwasher in Stainless Steel
+ - Refrigerator: Bespoke  with family hub
+ - Vacuum: [Irobot S9+ + brava jet](https://amzn.to/3TX0cQf)
+
+### Blinds
+- [Ikea Fyrtur](https://amzn.to/3fmNwmO)
