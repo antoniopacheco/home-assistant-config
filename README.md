@@ -8,10 +8,12 @@
 ## Table of content
 
 - [All my automations](#automations)
+- [Actionable Notifications](#actionable-notifications)
 - [Input booleans](#input-booleans)
 - [My devices](#my-devices)
 
-<!-- start-automations -->
+
+<!-- start automations -->
 ## Automations
 1. [Light Automations](#lights-automations) (15 automations)
 2. [Control switches](#control-switches)
@@ -24,86 +26,102 @@
 
 ### Lights automations
 
+code [here](https://github.com/antoniopacheco/home-assistant-config/blob/develop/automations/lights.yaml)
+
 #### Porche
-- Lights are [turned on automatically](https://github.com/antoniopacheco/home-assistant-config/blob/develop/automations/lights.yaml#L18) 60 minutes after sunset
-- Lights are [turned off automatically](https://github.com/antoniopacheco/home-assistant-config/blob/develop/automations/lights.yaml#L31) at midnight
+- Lights are turned on automatically 60 minutes after sunset
+- Lights are turned off automatically at midnight
 
 #### Living Room
-- Lights are [turned on automatically](https://github.com/antoniopacheco/home-assistant-config/blob/develop/automations/lights.yaml#L58) when movement is detected on dark living room (except when someone is [watching tv on living room](#watching-in-living-room))
+- Lights are turned on automatically](https://github.com/antoniopacheco/home-assistant-config/blob/develop/automations/lights.yaml#L58) when movement is detected in a dark living room (except when someone is [watching tv in the living room](#watching-in-living-room))
 - Lights are [turned off automatically](https://github.com/antoniopacheco/home-assistant-config/blob/develop/automations/lights.yaml#L86) when no movement is detected
 
 
 #### Kitchen
-- Lights are [turned on automatically](https://github.com/antoniopacheco/home-assistant-config/blob/develop/automations/lights.yaml#L114) when movement is detected on kitchen (except when someone is [watching tv on living room](#watching-in-living-room))
-- Lights are [turned off automatically](https://github.com/antoniopacheco/home-assistant-config/blob/develop/automations/lights.yaml#L137) when no movement is detected for 30 seconds (except when [kitchen is in bussy status](#busy-in-kitchen))
+- Lights are turned on automatically when movement is detected in the kitchen (except when someone is [watching tv in the living room](#watching-in-living-room))
+- Lights are turned off automatically when no movement is detected for 30 seconds (except when [the kitchen is in busy status](#busy-in-kitchen))
 
 #### Stairs
-- Lights are [turned on automatically](https://github.com/antoniopacheco/home-assistant-config/blob/develop/automations/lights.yaml#L166) when movement is detected on dark stairs
-- Lights are [turned off automatically](https://github.com/antoniopacheco/home-assistant-config/blob/develop/automations/lights.yaml#L192) when no movement is detected
+- Lights are turned on automatically when movement is detected on dark stairs
+- Lights are turned off automatically when no movement is detected
 
 #### Master bedroom
-- Lights are [turned on automatically](https://github.com/antoniopacheco/home-assistant-config/blob/develop/automations/lights.yaml#L220) when movement is detected on dark room (except when in [sleep mode](#sleeping))
+- Lights are turned on automatically  when movement is detected in a dark master bedroom (except when in [sleep mode](#sleeping))
 
-- Night light is [tuned on automatically](https://github.com/antoniopacheco/home-assistant-config/blob/develop/automations/lights.yaml#L244) when movement is detected on dark room while in sleep mode
+- Night light is turned on automatically when movement is detected dark master bedroom while in sleep mode
 
-- Lights are [turned off automatically](https://github.com/antoniopacheco/home-assistant-config/blob/develop/automations/lights.yaml#L269) when no movement is detected
+- Lights are turned off automatically when no movement is detected (except when in [busy mode](#busy-in-master-bedroom))
 
 #### Loft
-- Lights are [turned on automatically](https://github.com/antoniopacheco/home-assistant-config/blob/develop/automations/lights.yaml#L299) when movement is detected on dark living room (except when someone is watching tv on loft)
-- Lights are [turned off automatically](https://github.com/antoniopacheco/home-assistant-config/blob/develop/automations/lights.yaml#L324) when no movement is detected (Except when [busy in loft](#busy-in-loft) is activye)
+- Lights are turned on automatically when movement is detected in a dark loft (except when someone is watching tv in the loft)
+- Lights are turned off automatically when no movement is detected (Except when [busy in the loft](#busy-in-loft)
 
 #### Entryway
-- Lights are [turned on automatically](https://github.com/antoniopacheco/home-assistant-config/blob/develop/automations/lights.yaml#L350) when movement is detected after sunset and before sunrise
-- Lights are [turned off automatically](https://github.com/antoniopacheco/home-assistant-config/blob/develop/automations/lights.yaml#L372) when no movement is detected
+- Lights are turned on automatically when movement is detected after sunset and before sunrise
+- Lights are turned off automatically when no movement is detected
 
 ### Blinds automations
-- Blinds are [open automatically](https://github.com/antoniopacheco/home-assistant-config/blob/develop/automations/blinds.yaml#L9) on sunrise (except when on [vacation mode](#vacation-mode))
-- Blinds are [closed automatically](https://github.com/antoniopacheco/home-assistant-config/blob/develop/automations/blinds.yaml#L34) on sunset
+code in [here](https://github.com/antoniopacheco/home-assistant-config/blob/develop/automations/blinds.yaml)
+
+- Blinds are open automatically at sunrise (except when on [vacation mode](#vacation-mode))
+- Blinds are closed automatically at sunset
 
 ### Control switches
+Code in [here](https://github.com/antoniopacheco/home-assistant-config/blob/develop/automations/control_switches.yaml)
 
 #### kitchen
-- Mark [kitchen as bussy and turn on lights](https://github.com/antoniopacheco/home-assistant-config/blob/develop/automations/control_switches.yaml#L17) for 15 minutes when clicking button
+- Mark the [kitchen as busy](#busy-in-kitchen) and turn on the lights, call [still busy in Alexa](#ask-if-still-busy-in-the-kitchen) in 15 minutes
 
-- Mark [kitchen as not bussy and turn off lights](https://github.com/antoniopacheco/home-assistant-config/blob/develop/automations/control_switches.yaml#L17) when clicking button
+- Mark [the kitchen](#busy-in-kitchen) as not busy and turn off lights when clicking a button
 
 #### Master bedroom
-- Ready to sleep [Automation](https://github.com/antoniopacheco/home-assistant-config/blob/develop/automations/control_switches.yaml#L78)
+- Ready to sleep Automation:
     - adjust temperature
     - turn on fan
+    - turn off the master bedroom lights if there is no movement
     - set [sleep mode](#sleeping) on
-    - turn off other fans and lights if [guest mode](#guest-mode) is off
+    - set [busy in the master bedroom](#busy-in-master-bedroom) to "false"
+    - turn off other fans and lights if [the guest mode](#guest-mode) is off
+
+- Click on a button to turn on the lights
+    - lights will turn on
+    - [Alexa will ask](#ask-if-busy-in-the-master-bedroom) if you want to keep the lights on
 
 #### Living room
-- [open blinds](https://github.com/antoniopacheco/home-assistant-config/blob/develop/automations/control_switches.yaml#L150)
-- [close blinds](https://github.com/antoniopacheco/home-assistant-config/blob/develop/automations/control_switches.yaml#L171)
-- [set blinds to 50%](https://github.com/antoniopacheco/home-assistant-config/blob/develop/automations/control_switches.yaml#L192) with press and hold
+- open blinds
+- close blinds
+- set blinds to 50% with press and hold
 
 ### Media player
+media player automations [here](https://github.com/antoniopacheco/home-assistant-config/blob/develop/automations/media_player.yaml)
+
 #### Living Room
-- [watching](https://github.com/antoniopacheco/home-assistant-config/blob/develop/automations/media_player.yaml#L18) tv on living room
+- watching tv in the living room
     - turn on receiver
-    - turn off living room lights
+    - turn off the living room lights
     - close blinds if is before sunset
     - turn off kitchen lights if not [busy](#busy-in-kitchen)
-    - set [watching in living room](#watching-in-living-room) true
-- [stop watching](https://github.com/antoniopacheco/home-assistant-config/blob/develop/automations/media_player.yaml#L63) tv on living room
-    - set [watching in living room](#watching-in-living-room) false
+    - set [watching in the living room](#watching-in-living-room) to "true"
+- stop watching tv in the living room
+    - set [watching in the living room](#watching-in-living-room) to "false"
 
 #### Loft
-- [watching](https://github.com/antoniopacheco/home-assistant-config/blob/develop/automations/media_player.yaml#L89) tv on loft
-    - set [watching in loft](#watching-in-the-loft) to true
-    - turn off lights if not [busy in loft](#busy-in-loft)
-- [stop watching](https://github.com/antoniopacheco/home-assistant-config/blob/develop/automations/media_player.yaml#L118) tv on loft
-    - set [watching in loft](#watching-in-the-loft) to false
+- watching tv in the loft
+    - set [watching in the loft](#watching-in-the-loft) to "true"
+    - turn off the lights if not [busy in the loft](#busy-in-loft)
+- stop watching tv in the loft
+    - set [watching in the loft](#watching-in-the-loft) to "false"
 
 ### Notifications
+Notifications automations [here](https://github.com/antoniopacheco/home-assistant-config/blob/develop/automations/notifications.yaml)
+
 #### Alexa notifications
-- [notify](https://github.com/antoniopacheco/home-assistant-config/blob/develop/automations/notifications.yaml#L17) via alexa when washer is done
+- notify] via Alexa when the washer is done
 
-- [notify](https://github.com/antoniopacheco/home-assistant-config/blob/develop/automations/notifications.yaml#L34) via alexa when dryer is done
+- notify] via Alexa when the dryer is done
 
-- [notify](https://github.com/antoniopacheco/home-assistant-config/blob/develop/automations/notifications.yaml#L51) via alexa when dish washer is done
+- notify via Alexa when the dishwasher is done
+
 ### Other Automations
 you can see a list of other [utilities automations](https://github.com/antoniopacheco/home-assistant-config/blob/develop/automations/utilities.yaml) to update the start and end date of several services like:
 - sprinklers
@@ -114,6 +132,24 @@ you can see a list of other [utilities automations](https://github.com/antoniopa
 
 <!-- end-automations -->
 
+<!-- start actionable notifications -->
+## Actionable Notifications
+
+### Alexa actionable notifications
+for help on how to setup you can follow [this tutorial](https://www.youtube.com/watch?v=uoifhNyEErE&t=234s)
+or use [this repo](https://github.com/keatontaylor/alexa-actions)
+
+#### Master Bedroom
+#### Ask if busy in the master bedroom
+ - if the answer is yes it will change [busy in the master bedroom](#busy-in-master-bedroom) to "true", and will trigger [Ask if still busy in the master bedroom](#ask-if-still-busy-in-the-master-bedroom) in 15 minutes
+#### Ask if still busy in the master bedroom
+- if the answer is yes, it will trigger itself again in 15 minutes
+- if the answer is no, or no answer is detected, it will change [busy in the master bedroom](#busy-in-master-bedroom) to "false" and turn off the master bedroom lights
+#### Kitchen
+#### Ask if still busy in the kitchen
+- if the answer is yes, it will trigger itself again in 15 minutes
+- if the answer is no, or no answer is detected, it will change [busy in the kitchen](#busy-in-kitchen) to "false" and turn off the kitchen lights
+<!-- end actionable notifications -->
 ## Input booleans
  ### busy in kitchen
  wheter if someone is [bussy in the kitchen](https://github.com/antoniopacheco/home-assistant-config/blob/develop/includes/input_booleans.yaml#L10) or not, controlled via [control switch](#control-switches)
@@ -122,30 +158,30 @@ you can see a list of other [utilities automations](https://github.com/antoniopa
  wheter if someone is [bussy in the living room](https://github.com/antoniopacheco/home-assistant-config/blob/develop/includes/input_booleans.yaml#L14) or not
 
 ## busy in master bedroom
- wheter if someone is [bussy in the master bedroom](https://github.com/antoniopacheco/home-assistant-config/blob/develop/includes/input_booleans.yaml#L18) or not
+Whether someone is [busy in the master bedroom](https://github.com/antoniopacheco/home-assistant-config/blob/develop/includes/input_booleans.yaml#L18) or not
 
 ## sleeping
  wheter we are in [sleeping mode](https://github.com/antoniopacheco/home-assistant-config/blob/develop/includes/input_booleans.yaml#L22) or not
 
 ## guest_sleeping
- wheter guests are in [sleeping mode](https://github.com/antoniopacheco/home-assistant-config/blob/develop/includes/input_booleans.yaml#L26) or not
+Whether guests are in [sleeping mode](https://github.com/antoniopacheco/home-assistant-config/blob/develop/includes/input_booleans.yaml#L26) or not
 
 ## busy in loft
- wheter if someone is [bussy in the loft](https://github.com/antoniopacheco/home-assistant-config/blob/develop/includes/input_booleans.yaml#L30) or not
+Whether someone is [busy in the loft](https://github.com/antoniopacheco/home-assistant-config/blob/develop/includes/input_booleans.yaml#L30) or not
 
 ## watching in living room
- wheter if someone is [watching tv in the living room](https://github.com/antoniopacheco/home-assistant-config/blob/develop/includes/input_booleans.yaml#L34) or not
+ Whether someone is [watching tv in the living room](https://github.com/antoniopacheco/home-assistant-config/blob/develop/includes/input_booleans.yaml#L34) or not
 
 ## watching in the loft
- wheter if someone is [watching tv in the loft](https://github.com/antoniopacheco/home-assistant-config/blob/develop/includes/input_booleans.yaml#L38) or not
+ Whether someone is [watching tv in the loft](https://github.com/antoniopacheco/home-assistant-config/blob/develop/includes/input_booleans.yaml#L38) or not
 
 ## cleaned today
- wheter if floor was [cleaned today](https://github.com/antoniopacheco/home-assistant-config/blob/develop/includes/input_booleans.yaml#L42) or not 
+Whether the floor was [cleaned](https://github.com/antoniopacheco/home-assistant-config/blob/develop/includes/input_booleans.yaml#L42) today](https://github.com/antoniopacheco/home-assistant-config/blob/develop/includes/input_booleans.yaml#L42) or not 
 
  ## vacation mode
- wheter if [vacation mode is on](https://github.com/antoniopacheco/home-assistant-config/blob/develop/includes/input_booleans.yaml#L46) or not 
+ Whether [vacation mode is on](https://github.com/antoniopacheco/home-assistant-config/blob/develop/includes/input_booleans.yaml#L46) or not 
 
  ## guest mode
- wheter if [guest mode is on](https://github.com/antoniopacheco/home-assistant-config/blob/develop/includes/input_booleans.yaml#L50) or not 
+Whether if the [guest](https://github.com/antoniopacheco/home-assistant-config/blob/develop/includes/input_booleans.yaml#L50)[ mode is](https://github.com/antoniopacheco/home-assistant-config/blob/develop/includes/input_booleans.yaml#L50) on](https://github.com/antoniopacheco/home-assistant-config/blob/develop/includes/input_booleans.yaml#L50) or not 
 
 ## My Devices

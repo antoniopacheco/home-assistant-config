@@ -38,10 +38,11 @@
       entity_id: switch.kitchen_main_lights
       domain: switch
     - delay: 00:15:00
-    - service: automation.trigger
-      data: {}
-      target:
-        entity_id: automation.control_switches_mark_kitchen_as_not_bussy
+    - service: script.activate_alexa_actionable_notification
+      data:
+        text: Should I keep lights on?
+        event_id: actionable_notification_kitchen_still_busy
+        alexa_device: media_player.jesus_s_7th_echo_dot
   mode: single
 
 - alias: "Control switches: mark kitchen as not bussy"
@@ -93,6 +94,10 @@
       data: {}
       target:
         entity_id: input_boolean.sleeping
+    - service: input_boolean.turn_off
+      data: {}
+      target:
+        entity_id: input_boolean.busy_in_master_bedroom
     - service: notify.alexa_media_jesus_s_echo_dot_bedroom
       data:
         message:
@@ -123,6 +128,15 @@
         entity_id: fan.master_bedroom_ceiling_fan
     - if:
         - condition: state
+          entity_id: binary_sensor.lumi_lumi_sensor_motion_aq2_c039e207_ias_zone
+          state: "off"
+      then:
+        - type: turn_off
+          device_id: ec0c8c237f75405507b5c3329aebe55c
+          entity_id: light.bedroom_fan_light
+          domain: light
+    - if:
+        - condition: state
           entity_id: input_boolean.guest_mode
           state: "off"
       then:
@@ -138,6 +152,27 @@
           device_id: e97cd70c4660d3f773bccb57a70ccac8
           entity_id: switch.living_room_main_lights
           domain: switch
+  mode: single
+
+- alias: "Control switches: Master Bedroom Actionable lights"
+  description: alexa will ask if room is busy
+  trigger:
+    - device_id: c793e4ce34753abd80b6a18c6df7bd2c
+      domain: zha
+      platform: device
+      type: remote_button_short_press
+      subtype: open
+  condition: []
+  action:
+    - type: turn_on
+      device_id: ec0c8c237f75405507b5c3329aebe55c
+      entity_id: light.bedroom_fan_light
+      domain: light
+    - service: script.activate_alexa_actionable_notification
+      data:
+        text: Should I keep lights on?
+        event_id: actionable_notification_mark_bedrom_busy
+        alexa_device: media_player.jesus_s_echo_dot_bedroom
   mode: single
 
 #  _     _       _               ____
