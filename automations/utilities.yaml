@@ -12,7 +12,7 @@
 # |____/| .__/|_|  |_|_| |_|_|\_\_|\___|_|  |___/
 #       |_|
 
-- alias: "Utilities: sprinlers update start"
+- alias: "Utilities: sprinklers update start"
   mode: single
   trigger:
     - platform: device
@@ -27,7 +27,7 @@
         entity_id: "input_datetime.sprinklers_on"
         timestamp: "{{ now().timestamp() }}"
 
-- alias: "Utilities: sprinlers update done"
+- alias: "Utilities: sprinklers update done"
   mode: single
   trigger:
     - platform: device
@@ -149,3 +149,22 @@
       data:
         entity_id: "input_datetime.dryer_machine_off"
         timestamp: "{{ now().timestamp() }}"
+
+#      _                                      _
+#  ___| | ___  ___ _ __    _ __ ___  ___  ___| |_
+# / __| |/ _ \/ _ \ '_ \  | '__/ _ \/ __|/ _ \ __|
+# \__ \ |  __/  __/ |_) | | | |  __/\__ \  __/ |_
+# |___/_|\___|\___| .__/  |_|  \___||___/\___|\__|
+#                 |_|
+
+- alias: "Utilities: Reset sleep status"
+  mode: single
+  trigger:
+    platform: time
+    at: "10:00:00"
+  condition: []
+  action:
+    - service: input_boolean.turn_off
+      data: {}
+      target:
+        entity_id: input_boolean.sleeping

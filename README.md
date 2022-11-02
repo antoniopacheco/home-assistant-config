@@ -146,6 +146,7 @@ You can see a list of other [utilities automations](https://github.com/antoniopa
 - dishwasher
 - washer
 - dryer
+- reset "sleeping" at 10 am
 
 <!-- end-automations -->
 
