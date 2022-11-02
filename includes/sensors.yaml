@@ -464,3 +464,14 @@
   duration:
     days: 7
   end: "{{ now() }}"
+#     _    _                          _ _ _
+#    / \  (_)_ __    __ _ _   _  __ _| (_) |_ _   _
+#   / _ \ | | '__|  / _` | | | |/ _` | | | __| | | |
+#  / ___ \| | |    | (_| | |_| | (_| | | | |_| |_| |
+# /_/   \_\_|_|     \__, |\__,_|\__,_|_|_|\__|\__, |
+#                      |_|                    |___/
+
+- platform: waqi
+  token: !secret aqcin_token
+  locations:
+    - Santa Clarita-Placerita, Los Angeles

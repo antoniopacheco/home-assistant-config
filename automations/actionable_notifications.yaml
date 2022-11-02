@@ -155,7 +155,7 @@
       event_type: alexa_actionable_notification
       event_data:
         event_id: actionable_notification_kitchen_still_busy
-        event_response_type: ResponseNo
+        event_response_type: ResponseNone
   condition: []
   action:
     - service: input_boolean.turn_off

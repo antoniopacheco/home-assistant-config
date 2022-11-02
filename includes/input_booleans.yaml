@@ -50,3 +50,7 @@ vacation_mode:
 guest_mode:
   name: Guest mode
   icon: mdi:human-male-female
+
+bad_air:
+  name: There is currently bad air
+  icon: mdi:weather-cloudy-alert

@@ -40,7 +40,7 @@
     - delay: 00:15:00
     - service: script.activate_alexa_actionable_notification
       data:
-        text: Should I keep lights on?
+        text: Are you still here?
         event_id: actionable_notification_kitchen_still_busy
         alexa_device: media_player.jesus_s_7th_echo_dot
   mode: single

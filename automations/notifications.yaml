@@ -73,3 +73,45 @@
         data:
           type: announce
   mode: single
+
+- alias: "Notifications: Air quality bad"
+  description: "Notify if air quality is bad"
+  trigger:
+    - above: "150"
+      entity_id: sensor.waqi_santa_clarita_placerita_los_angeles
+      platform: numeric_state
+  condition:
+    - condition: state
+      entity_id: input_boolean.bad_air
+      state: "off"
+  action:
+    - service: notify.alexa_media_everywhere
+      data:
+        message: Air quality is bad, you should turn off the vent
+        data:
+          type: announce
+    - service: input_boolean.turn_on
+      data: {}
+      target:
+        entity_id: input_boolean.bad_air
+
+- alias: "Notifications: Air quality is good again"
+  description: "Notify if air quality is good again"
+  trigger:
+    - below: "150"
+      entity_id: sensor.waqi_santa_clarita_placerita_los_angeles
+      platform: numeric_state
+  condition:
+    - condition: state
+      entity_id: input_boolean.bad_air
+      state: "on"
+  action:
+    - service: notify.alexa_media_everywhere
+      data:
+        message: Air quality is good again, you should turn on the vent
+        data:
+          type: announce
+    - service: input_boolean.turn_off
+      data: {}
+      target:
+        entity_id: input_boolean.bad_air
