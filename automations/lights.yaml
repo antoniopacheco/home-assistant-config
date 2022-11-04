@@ -384,3 +384,53 @@
       entity_id: switch.entry_way_lamp_on_off
       domain: switch
   mode: single
+
+#   ____                 _     _              _
+#  / ___|_   _  ___  ___| |_  | |__   ___  __| |_ __ ___   ___  _ __ ___
+# | |  _| | | |/ _ \/ __| __| | '_ \ / _ \/ _` | '__/ _ \ / _ \| '_ ` _ \
+# | |_| | |_| |  __/\__ \ |_  | |_) |  __/ (_| | | | (_) | (_) | | | | | |
+#  \____|\__,_|\___||___/\__| |_.__/ \___|\__,_|_|  \___/ \___/|_| |_| |_|
+#
+
+- alias: "Light: Turn on guest   bedroom on movement before sleeping"
+  trigger:
+    - type: motion
+      platform: device
+      device_id: 4c58a1fe6a8fe543482c08ee804a6014
+      entity_id: binary_sensor.lumi_lumi_motion_ac02_iaszone
+      domain: binary_sensor
+  condition:
+    - condition: state
+      entity_id: input_boolean.guest_sleeping
+      state: "off"
+    - type: is_illuminance
+      condition: device
+      device_id: 4c58a1fe6a8fe543482c08ee804a6014
+      entity_id: sensor.lumi_lumi_motion_ac02_illuminance
+      domain: sensor
+      below: 5
+  action:
+    - type: turn_on
+      device_id: 07eee0461fd782b8cdfb67e91c0539f2
+      entity_id: light.guest_room_ceiling_fan_light
+      domain: light
+  mode: single
+
+- alias: "Light: turn off guest bedroom when no movement"
+  trigger:
+    - type: no_motion
+      platform: device
+      device_id: 4c58a1fe6a8fe543482c08ee804a6014
+      entity_id: binary_sensor.lumi_lumi_motion_ac02_iaszone
+      domain: binary_sensor
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 30
+  condition: []
+  action:
+    - type: turn_off
+      device_id: 07eee0461fd782b8cdfb67e91c0539f2
+      entity_id: light.guest_room_ceiling_fan_light
+      domain: light
+  mode: single

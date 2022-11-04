@@ -168,3 +168,7 @@
       data: {}
       target:
         entity_id: input_boolean.sleeping
+    - service: input_boolean.turn_off
+      data: {}
+      target:
+        entity_id: input_boolean.guest_sleeping
