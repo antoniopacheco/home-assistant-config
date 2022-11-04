@@ -54,6 +54,12 @@ code [here](https://github.com/antoniopacheco/home-assistant-config/blob/develop
 
 - Lights are turned off automatically when no movement is detected (except when in [busy mode](#busy-in-master-bedroom))
 
+#### Guest bedroom
+
+- Lights are turned on automatically  when movement is detected in a dark guest bedroom (except when in sleep mode)
+
+- Lights are turned off automatically when no movement is detected in guest bedroom
+
 #### Loft
 
 - Lights are turned on automatically when movement is detected in a dark loft (except when someone is watching tv in the loft)
