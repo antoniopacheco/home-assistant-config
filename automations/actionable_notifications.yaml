@@ -54,7 +54,6 @@
         alexa_device: media_player.jesus_s_echo_dot_bedroom
 
 # No
-
 - alias: "Actionable notification: masterbedroom not busy with response no"
   mode: single
   trigger:
@@ -63,31 +62,21 @@
       event_data:
         event_id: actionable_notification_master_bedroom_still_busy
         event_response_type: ResponseNo
-  condition: []
-  action:
-    - type: turn_off
-      device_id: 70aafa9b1a197b098fb51da48359d776
-      entity_id: light.loft_ceiling_fan_light
-      domain: light
-    - service: input_boolean.turn_off
-      data: {}
-      target:
-        entity_id: input_boolean.busy_in_master_bedroom
-
-# No Response
-- alias: "Actionable notification: masterbedroom not busy with no response"
-  mode: single
-  trigger:
     - platform: event
       event_type: alexa_actionable_notification
       event_data:
         event_id: actionable_notification_master_bedroom_still_busy
         event_response_type: ResponseNone
+    - platform: event
+      event_type: alexa_actionable_notification
+      event_data:
+        event_id: actionable_notification_master_bedroom_still_busy
+        event_response_type: ResponseString
   condition: []
   action:
     - type: turn_off
-      device_id: ec0c8c237f75405507b5c3329aebe55c
-      entity_id: light.bedroom_fan_light
+      device_id: 70aafa9b1a197b098fb51da48359d776
+      entity_id: light.loft_ceiling_fan_light
       domain: light
     - service: input_boolean.turn_off
       data: {}
@@ -132,30 +121,16 @@
       event_data:
         event_id: actionable_notification_kitchen_still_busy
         event_response_type: ResponseNo
-  condition: []
-  action:
-    - service: input_boolean.turn_off
-      data: {}
-      target:
-        entity_id: input_boolean.busy_in_kitchen
-    - if:
-        - condition: state
-          entity_id: binary_sensor.lumi_lumi_motion_ac02_ias_zone
-          state: "off"
-      then:
-        - type: turn_off
-          device_id: b6ecb1786d89951862e4f0a8301302bd
-          entity_id: light.kitchen_main_lights
-          domain: light
-
-# No Response
-- alias: "Actionable notification: kitchen not busy with no response"
-  trigger:
     - platform: event
       event_type: alexa_actionable_notification
       event_data:
         event_id: actionable_notification_kitchen_still_busy
         event_response_type: ResponseNone
+    - platform: event
+      event_type: alexa_actionable_notification
+      event_data:
+        event_id: actionable_notification_kitchen_still_busy
+        event_response_type: ResponseString
   condition: []
   action:
     - service: input_boolean.turn_off
