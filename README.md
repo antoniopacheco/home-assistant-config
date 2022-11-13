@@ -144,6 +144,12 @@ All alexa notifications are muted when sleep mode is on
 
 - notify via Alexa when the dishwasher is done
 
+#### Phone notifications
+
+- Water leak de in sink
+- Water leak detection in dishwasher
+- Waster leak detection in washer
+
 ### Other Automations
 
 You can see a list of other [utilities automations](https://github.com/antoniopacheco/home-assistant-config/blob/develop/automations/utilities.yaml) to update the start and end date of several services like:

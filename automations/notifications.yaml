@@ -115,3 +115,75 @@
       data: {}
       target:
         entity_id: input_boolean.bad_air
+
+#        _
+#  _ __ | |__   ___  _ __   ___
+# | '_ \| '_ \ / _ \| '_ \ / _ \
+# | |_) | | | | (_) | | | |  __/
+# | .__/|_| |_|\___/|_| |_|\___|
+# |_|
+#
+
+#                _              _            _
+# __      ____ _| |_ ___ _ __  | | ___  __ _| | _____
+# \ \ /\ / / _` | __/ _ \ '__| | |/ _ \/ _` | |/ / __|
+#  \ V  V / (_| | ||  __/ |    | |  __/ (_| |   <\__ \
+#   \_/\_/ \__,_|\__\___|_|    |_|\___|\__,_|_|\_\___/
+#
+
+- alias: "Notifications: Water leak detected in kitchen sink"
+  mode: single
+  trigger:
+    - device_id: 517b6339a93f1d49396310095a2cef37
+      entity_id: binary_sensor.lumi_lumi_sensor_wleak_aq1_iaszone
+      domain: binary_sensor
+      platform: device
+      type: moist
+  condition: []
+  action:
+    - service: notify.mobile_app_antonios_iphone_2
+      data:
+        message: there is water under the sink in the kitchen
+        title: Water leak detected
+    - service: notify.mobile_app_lloyds_iphone
+      data:
+        message: there is water under the sink in the kitchen
+        title: Water leak detected
+
+- alias: "Notifications: Water leak detected in dishwasher"
+  mode: single
+  trigger:
+    - device_id: 6ce862b8f82a249aede6049ae9edb198
+      entity_id: binary_sensor.lumi_lumi_sensor_wleak_aq1_iaszone_2
+      domain: binary_sensor
+      platform: device
+      type: moist
+  condition: []
+  action:
+    - service: notify.mobile_app_antonios_iphone_2
+      data:
+        message: there is water under the sink in the dishwasher
+        title: Water leak detected
+    - service: notify.mobile_app_lloyds_iphone
+      data:
+        message: there is water under the sink in the dishwasher
+        title: Water leak detected
+
+- alias: "Notifications: Water leak detected in washer"
+  mode: single
+  trigger:
+    - device_id: 48888662099cb1cf1d6db0db560160a6
+      entity_id: binary_sensor.lumi_lumi_sensor_wleak_aq1_iaszone_3
+      domain: binary_sensor
+      platform: device
+      type: moist
+  condition: []
+  action:
+    - service: notify.mobile_app_antonios_iphone_2
+      data:
+        message: there is water under the sink in the washer
+        title: Water leak detected
+    - service: notify.mobile_app_lloyds_iphone
+      data:
+        message: there is water under the sink in the washer
+        title: Water leak detected
