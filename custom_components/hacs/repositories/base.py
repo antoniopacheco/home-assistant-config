@@ -3,12 +3,11 @@ from __future__ import annotations
 
 from asyncio import sleep
 from datetime import datetime
-import json
 import os
 import pathlib
 import shutil
 import tempfile
-from typing import TYPE_CHECKING, Any, List
+from typing import TYPE_CHECKING, Any
 import zipfile
 
 from aiogithubapi import (
@@ -19,7 +18,7 @@ from aiogithubapi import (
 from aiogithubapi.const import BASE_API_URL
 from aiogithubapi.objects.repository import AIOGitHubAPIRepository
 import attr
-from homeassistant.helpers import device_registry as dr
+from homeassistant.helpers import device_registry as dr, issue_registry as ir
 
 from ..const import DOMAIN
 from ..enums import ConfigurationType, HacsDispatchEvent, RepositoryFile
@@ -33,7 +32,8 @@ from ..utils.backup import Backup, BackupNetDaemon
 from ..utils.decode import decode_content
 from ..utils.decorator import concurrent
 from ..utils.filters import filter_content_return_one_of_type
-from ..utils.logger import get_hacs_logger
+from ..utils.json import json_loads
+from ..utils.logger import LOGGER
 from ..utils.path import is_safe
 from ..utils.queue_manager import QueueManager
 from ..utils.store import async_remove_store
@@ -50,16 +50,27 @@ if TYPE_CHECKING:
 
 
 TOPIC_FILTER = (
+    "add-on",
+    "addon",
+    "app",
+    "appdaemon-apps",
+    "appdaemon",
     "custom-card",
+    "custom-cards",
     "custom-component",
     "custom-components",
     "customcomponents",
     "hacktoberfest",
     "hacs-default",
     "hacs-integration",
+    "hacs-repository",
     "hacs",
     "hass",
     "hassio",
+    "home-assistant-custom",
+    "home-assistant-frontend",
+    "home-assistant-hacs",
+    "home-assistant-sensor",
     "home-assistant",
     "home-automation",
     "homeassistant-components",
@@ -68,16 +79,45 @@ TOPIC_FILTER = (
     "homeassistant",
     "homeautomation",
     "integration",
+    "lovelace-ui",
     "lovelace",
+    "media-player",
+    "mediaplayer",
+    "netdaemon",
+    "plugin",
+    "python_script",
+    "python-script",
     "python",
     "sensor",
+    "smart-home",
+    "smarthome",
     "theme",
     "themes",
-    "custom-cards",
-    "home-assistant-frontend",
-    "home-assistant-hacs",
-    "home-assistant-custom",
-    "lovelace-ui",
+)
+
+
+REPOSITORY_KEYS_TO_EXPORT = (
+    # Keys can not be removed from this list until v3
+    # If keys are added, the action need to be re-run with force
+    ("description", ""),
+    ("downloads", 0),
+    ("domain", None),
+    ("etag_repository", None),
+    ("full_name", ""),
+    ("last_commit", None),
+    ("last_updated", 0),
+    ("last_version", None),
+    ("manifest_name", None),
+    ("open_issues", 0),
+    ("stargazers_count", 0),
+    ("topics", []),
+)
+
+HACS_MANIFEST_KEYS_TO_EXPORT = (
+    # Keys can not be removed from this list until v3
+    # If keys are added, the action need to be re-run with force
+    ("country", []),
+    ("name", None),
 )
 
 
@@ -95,7 +135,7 @@ class RepositoryData:
     """RepositoryData class."""
 
     archived: bool = False
-    authors: List[str] = []
+    authors: list[str] = []
     category: str = ""
     config_flow: bool = False
     default_branch: str = None
@@ -119,13 +159,12 @@ class RepositoryData:
     manifest_name: str = None
     new: bool = True
     open_issues: int = 0
-    published_tags: List[str] = []
-    pushed_at: str = ""
+    published_tags: list[str] = []
     releases: bool = False
     selected_tag: str = None
     show_beta: bool = False
     stargazers_count: int = 0
-    topics: List[str] = []
+    topics: list[str] = []
 
     @property
     def name(self):
@@ -147,32 +186,24 @@ class RepositoryData:
 
     def update_data(self, data: dict, action: bool = False) -> None:
         """Update data of the repository."""
-        for key in data:
+        for key, value in data.items():
             if key not in self.__dict__:
                 continue
-            if key == "pushed_at":
-                if data[key] == "":
-                    continue
-                if "Z" in data[key]:
-                    setattr(
-                        self,
-                        key,
-                        datetime.strptime(data[key], "%Y-%m-%dT%H:%M:%SZ"),
-                    )
-                else:
-                    setattr(self, key, datetime.strptime(data[key], "%Y-%m-%dT%H:%M:%S"))
+
+            if key == "last_fetched" and isinstance(value, float):
+                setattr(self, key, datetime.fromtimestamp(value))
             elif key == "id":
-                setattr(self, key, str(data[key]))
+                setattr(self, key, str(value))
             elif key == "country":
-                if isinstance(data[key], str):
-                    setattr(self, key, [data[key]])
+                if isinstance(value, str):
+                    setattr(self, key, [value])
                 else:
-                    setattr(self, key, data[key])
+                    setattr(self, key, value)
             elif key == "topics" and not action:
-                setattr(self, key, [topic for topic in data[key] if topic not in TOPIC_FILTER])
+                setattr(self, key, [topic for topic in value if topic not in TOPIC_FILTER])
 
             else:
-                setattr(self, key, data[key])
+                setattr(self, key, value)
 
 
 @attr.s(auto_attribs=True)
@@ -180,7 +211,7 @@ class HacsManifest:
     """HacsManifest class."""
 
     content_in_root: bool = False
-    country: List[str] = []
+    country: list[str] = []
     filename: str = None
     hacs: str = None  # Minimum HACS version
     hide_default_branch: bool = False
@@ -214,6 +245,20 @@ class HacsManifest:
             elif key in manifest_data.__dict__:
                 setattr(manifest_data, key, value)
         return manifest_data
+
+    def update_data(self, data: dict) -> None:
+        """Update the manifest data."""
+        for key, value in data.items():
+            if key not in self.__dict__:
+                continue
+
+            if key == "country":
+                if isinstance(value, str):
+                    setattr(self, key, [value])
+                else:
+                    setattr(self, key, value)
+            else:
+                setattr(self, key, value)
 
 
 class RepositoryReleases:
@@ -265,7 +310,7 @@ class HacsRepository:
         self.tree = []
         self.treefiles = []
         self.ref = None
-        self.logger = get_hacs_logger()
+        self.logger = LOGGER
 
     def __str__(self) -> str:
         """Return a string representation of the repository."""
@@ -320,18 +365,6 @@ class HacsRepository:
         return status
 
     @property
-    def display_status_description(self) -> str:
-        """Return display_status_description."""
-        description = {
-            "default": "Not installed.",
-            "pending-restart": "Restart pending.",
-            "pending-upgrade": "Upgrade pending.",
-            "installed": "No action required.",
-            "new": "This is a newly added repository.",
-        }
-        return description[self.display_status]
-
-    @property
     def display_installed_version(self) -> str:
         """Return display_authors"""
         if self.data.installed_version is not None:
@@ -363,18 +396,6 @@ class HacsRepository:
         else:
             version_or_commit = "commit"
         return version_or_commit
-
-    @property
-    def main_action(self) -> str:
-        """Return the main action."""
-        actions = {
-            "new": "INSTALL",
-            "default": "INSTALL",
-            "installed": "REINSTALL",
-            "pending-restart": "REINSTALL",
-            "pending-upgrade": "UPGRADE",
-        }
-        return actions[self.display_status]
 
     @property
     def pending_update(self) -> bool:
@@ -473,6 +494,10 @@ class HacsRepository:
                 self.logger.debug("%s Did not update, content was not modified", self.string)
                 return
 
+        if self.repository_object:
+            self.data.last_updated = self.repository_object.attributes.get("pushed_at", 0)
+            self.data.last_fetched = datetime.utcnow()
+
         # Set topics
         self.data.topics = self.data.topics
 
@@ -521,7 +546,7 @@ class HacsRepository:
         self.additional_info = await self.async_get_info_file_contents()
 
         # Set last fetch attribute
-        self.data.last_fetched = datetime.now()
+        self.data.last_fetched = datetime.utcnow()
 
         return True
 
@@ -643,7 +668,10 @@ class HacsRepository:
             extractable = []
             for path in zip_file.filelist:
                 filename = "/".join(path.filename.split("/")[1:])
-                if filename.startswith(self.content.path.remote):
+                if (
+                    filename.startswith(self.content.path.remote)
+                    and filename != self.content.path.remote
+                ):
                     path.filename = filename.replace(self.content.path.remote, "")
                     extractable.append(path)
 
@@ -669,7 +697,7 @@ class HacsRepository:
                 **{"params": {"ref": ref or self.version_to_download()}},
             )
             if response:
-                return json.loads(decode_content(response.data.content))
+                return json_loads(decode_content(response.data.content))
         except BaseException:  # lgtm [py/catch-base-exception] pylint: disable=broad-except
             pass
 
@@ -705,6 +733,7 @@ class HacsRepository:
             )
             if response:
                 return render_template(
+                    self.hacs,
                     decode_content(response.data.content)
                     .replace("<svg", "<disabled")
                     .replace("</svg", "</disabled"),
@@ -754,6 +783,7 @@ class HacsRepository:
         )
 
         await self.async_remove_entity_device()
+        ir.async_delete_issue(self.hacs.hass, DOMAIN, f"removed_{self.data.id}")
 
     async def remove_local_directory(self) -> None:
         """Check the local directory."""
@@ -1013,7 +1043,12 @@ class HacsRepository:
             releases.append(release)
         return releases
 
-    async def common_update_data(self, ignore_issues: bool = False, force: bool = False) -> None:
+    async def common_update_data(
+        self,
+        ignore_issues: bool = False,
+        force: bool = False,
+        retry=False,
+    ) -> None:
         """Common update data."""
         releases = []
         try:
@@ -1025,7 +1060,11 @@ class HacsRepository:
                 self.hacs.common.renamed_repositories[
                     self.data.full_name
                 ] = repository_object.full_name
-                raise HacsRepositoryExistException
+                if not self.hacs.system.generator:
+                    raise HacsRepositoryExistException
+                self.logger.error(
+                    "%s Repository has been renamed - %s", self.string, repository_object.full_name
+                )
             self.data.update_data(
                 repository_object.attributes,
                 action=self.hacs.system.action,
@@ -1092,6 +1131,20 @@ class HacsRepository:
             for treefile in self.tree:
                 self.treefiles.append(treefile.full_path)
         except (AIOGitHubAPIException, HacsException) as exception:
+            if (
+                not retry
+                and self.ref is not None
+                and str(exception).startswith("GitHub returned 404")
+            ):
+                # Handle tags/branches being deleted.
+                self.data.selected_tag = None
+                self.ref = self.version_to_download()
+                self.logger.warning(
+                    "%s Selected version/branch %s has been removed, falling back to default",
+                    self.string,
+                    self.ref,
+                )
+                return await self.common_update_data(ignore_issues, force, True)
             if not self.hacs.status.startup and not ignore_issues:
                 self.logger.error("%s %s", self.string, exception)
             if not ignore_issues:
