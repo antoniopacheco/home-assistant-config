@@ -234,7 +234,7 @@
     - type: processor_use
     - type: last_boot
 
-- platform: uptime
+# - platform: uptime
 
 - platform: command_line
   command: !secret portfolio_value

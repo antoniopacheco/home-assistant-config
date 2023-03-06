@@ -87,3 +87,18 @@ input_text: !include includes/input_texts.yaml
 
 #Others
 switch: !include includes/switches.yaml
+
+####################################################
+#                                                  #
+#                  Zigbee.                         #
+#                                                  #
+####################################################
+
+zha:
+  zigpy_config:
+    network:
+      channel: 12 # What channel the radio should try to use.
+      channels: [12, 13, 14] # Channel mask
+    ota:
+      ikea_provider: true
+      inovelli_provider: true

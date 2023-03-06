@@ -32,9 +32,9 @@
           - media_player.receiver
           - media_player.receiver_zone_2
     - type: turn_off
-      device_id: e97cd70c4660d3f773bccb57a70ccac8
-      entity_id: switch.living_room_main_lights
-      domain: switch
+      device_id: 395ab51cb73a53d67d3a8ca6a7a1abef
+      entity_id: light.inovelli_vzm31_sn_light_2
+      domain: light
     - type: turn_off
       device_id: b04b8561152faed1f9f75fe8fc4d0ff3
       entity_id: switch.living_room_ceiling_fan_light

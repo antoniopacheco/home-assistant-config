@@ -24,11 +24,11 @@
         - service: cover.open_cover
           data: {}
           target:
-            entity_id: cover.dining_blinds
+            entity_id: cover.dining_room_blinds
         - service: cover.open_cover
           data: {}
           target:
-            entity_id: cover.tony_blinds_cover
+            entity_id: cover.tonys_office_blinds_cover
   mode: single
 
 - alias: "Blinds: Close on sunset"
@@ -46,9 +46,9 @@
         - service: cover.close_cover
           data: {}
           target:
-            entity_id: cover.dining_blinds
+            entity_id: cover.dining_room_blinds
         - service: cover.close_cover
           data: {}
           target:
-            entity_id: cover.tony_blinds_cover
+            entity_id: cover.tonys_office_blinds_cover
   mode: single

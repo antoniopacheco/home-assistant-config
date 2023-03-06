@@ -1,0 +1,22 @@
+####################################################
+#                                                  #
+#                  turn on Onkyo on Apple TV       #
+#                                                  #
+####################################################
+- id: "1654293724220"
+  alias: turn on Onkyo on Apple TV
+  description: "Turns on onkyo receiver when apple tv wakes"
+  trigger:
+    - platform: device
+      device_id: 28adeb2341843c3807d1e8cb3029ea1d
+      domain: media_player
+      entity_id: media_player.living_room
+      type: playing
+  condition: []
+  action:
+    - device_id: f7bef4137f36eda9ffd42133307c9c19
+      domain: mobile_app
+      type: notify
+      message: hey auto
+      title: haha
+  mode: single

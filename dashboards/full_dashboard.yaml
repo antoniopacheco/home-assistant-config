@@ -1,11 +1,10 @@
----
 background: var(--background-image)
 decluttering_templates:
   automation_template:
     card:
       card:
         show_header_toggle: false
-        title: "[[name]] automations"
+        title: '[[name]] automations'
         type: entities
       filter:
         include:
@@ -18,63 +17,156 @@ views:
       - entity: person.tony_pacheco
       - entity: person.lloyd_chan
     cards:
+      - type: custom:auto-entities
+        card:
+          type: entities
+          title: Low Batteries
+          icon: mdi:battery-outline
+        filter:
+          include:
+            - attributes:
+                device_class: battery
+              state: <= 5
+        sort:
+          method: state
+          reverse: false
+          numeric: true
+      - type: custom:auto-entities
+        show_empty: false
+        card:
+          type: glance
+          title: Lights on
+        filter:
+          include:
+            - domain: light
+              state: 'on'
+              options:
+                tap_action:
+                  action: toggle
       - entities:
           - entities:
-              - light.living_room_main_lights
+              - light.inovelli_vzm31_sn_light_2
               - light.living_room_ceiling_fan_light
             head:
               color_picker: false
-              entity: light.living_room_main_lights
+              entity: light.inovelli_vzm31_sn_light_2
               hide_when_off: false
               name: Living room
+              type: custom:slider-entity-row
             type: custom:fold-entity-row
           - entities:
-              - light.kitchen_main_lights
+              - light.inovelli_vzm31_sn_light_9
+              - light.master_bedroom_ceiling_fan_light
             head:
               color_picker: false
-              entity: light.kitchen_main_lights
+              entity: light.inovelli_vzm31_sn_light_9
+              hide_when_off: false
+              name: Dining room
+              type: custom:slider-entity-row
+            type: custom:fold-entity-row
+          - entities:
+              - light.mudroom_main_lights
+              - light.entryway_lamp_switch
+            head:
+              color_picker: false
+              entity: light.mudroom_main_lights
+              hide_when_off: false
+              name: Mud room
+            type: custom:fold-entity-row
+          - entities:
+              - light.kitchen_main_lights_light_2
+              - light.kitchen_island_pendants
+            head:
+              color_picker: false
+              entity: light.kitchen_main_lights_light_2
               hide_when_off: false
               name: Kitchen
+              type: custom:slider-entity-row
             type: custom:fold-entity-row
           - entities:
-              - light.bedroom_fan_light
+              - light.inovelli_vzm31_sn_light_4
+              - light.inovelli_vzm31_sn_light_8
               - light.bedroom_night_light
+              - light.inovelli_vzm31_sn_light_5
+              - light.master_bedroom_bathroom_sink_lights
             head:
               color_picker: false
-              entity: light.bedroom_fan_light
+              entity: light.inovelli_vzm31_sn_light_4
               hide_when_off: false
               name: Master Bedroom
               type: custom:slider-entity-row
             type: custom:fold-entity-row
           - entities:
-              - light.inovelli_vzm31_sn_light
+              - light.inovelli_vzm31_sn_light_3
               - light.loft_ceiling_fan_light
             head:
               color_picker: false
-              entity: light.inovelli_vzm31_sn_light
+              entity: light.inovelli_vzm31_sn_light_3
               hide_when_off: false
               name: Loft
               type: custom:slider-entity-row
             type: custom:fold-entity-row
           - entities:
-              - light.guest_room_ceiling_fan_light
+              - light.guest_room_light_light
             head:
               color_picker: false
-              entity: light.guest_room_ceiling_fan_light
+              entity: light.guest_room_light_light
               hide_when_off: false
               name: Guest bedroom
             type: custom:fold-entity-row
           - entities:
-              - light.front_porch_overhead_light
+              - light.inovelli_vzm31_sn_light
             head:
               color_picker: false
-              entity: light.front_porch_overhead_light
+              entity: light.inovelli_vzm31_sn_light
               hide_when_off: false
               name: Porche
+              type: custom:slider-entity-row
             type: custom:fold-entity-row
-        show_header_toggle: false
+          - entities:
+              - light.stairs_main_lights
+            head:
+              color_picker: false
+              entity: light.stairs_main_lights
+              hide_when_off: false
+              name: Stairs
+            type: custom:fold-entity-row
+          - entities:
+              - light.inovelli_vzm31_sn_light_7
+            head:
+              color_picker: false
+              entity: light.inovelli_vzm31_sn_light_7
+              hide_when_off: false
+              name: Tony's office
+              type: custom:slider-entity-row
+            type: custom:fold-entity-row
+          - entities:
+              - light.inovelli_vzm31_sn_light_6
+            head:
+              color_picker: false
+              entity: light.inovelli_vzm31_sn_light_6
+              hide_when_off: false
+              name: Lloyd's office
+              type: custom:slider-entity-row
+            type: custom:fold-entity-row
+          - entities:
+              - light.exterior_back_porch_lights_2
+            head:
+              color_picker: false
+              entity: light.exterior_back_porch_lights_2
+              hide_when_off: false
+              name: backyard
+            type: custom:fold-entity-row
+        show_header_toggle: true
         title: Lights
         type: entities
+      - type: entities
+        entities:
+          - entity: cover.dining_room_blinds
+          - entity: cover.living_room_blinds
+          - entity: cover.tonys_office_blinds_cover
+        title: Blinds
+        state_color: true
       - entity: weather.home
         name: Weather
         type: custom:simple-weather-card
@@ -97,7 +189,7 @@ views:
                   entity: input_boolean.sleep_mode
                 type: custom:button-card
               - color: auto
-                entity: input_boolean.sleep_mode
+                entity: input_boolean.sleeping
                 icon: mdi:weather-night
                 name: >-
                   [[[ if (entity.state != "off") return "Sleep mode on"; else
@@ -152,7 +244,7 @@ views:
                 secondary:
                   attribute: battery_level
                   name: Battery
-                  unit: "%"
+                  unit: '%'
                 type: custom:multiple-entity-row
               - entity: switch.first_floor_vacuum_mode
               - entity: input_boolean.swiped_first_floor_today
@@ -170,7 +262,7 @@ views:
                 secondary:
                   attribute: battery_level
                   name: Battery
-                  unit: "%"
+                  unit: '%'
                 type: custom:multiple-entity-row
               - entity: switch.first_floor_mop_mode
               - entity: input_boolean.swiped_first_floor_today
@@ -445,7 +537,7 @@ views:
         show_header_toggle: false
         type: entities
       - entities:
-          - entity: input_boolean.sleep_mode
+          - entity: input_boolean.sleeping
         show_header_toggle: false
         type: entities
       - control: false
@@ -505,7 +597,7 @@ views:
             type: custom:fold-entity-row
           - entities:
               - icon: mdi:currency-eur
-                name: "Today's usage statistics "
+                name: 'Today''s usage statistics '
                 type: custom:template-entity-row
               - icon: mdi:currency-eur
                 name: >-
@@ -549,12 +641,11 @@ views:
                   states("sensor.monthly_power_cost")|float)|round(2)}} = €{{
                   (states("sensor.monthly_gas_cost")|float +
                   states("sensor.monthly_power_cost")|float +
-                  states("sensor.monthly_energy_fixed_cost")|float)|round(2)
-                  }}.
+                  states("sensor.monthly_energy_fixed_cost")|float)|round(2) }}.
                 type: custom:template-entity-row
               - type: divider
               - icon: mdi:currency-eur
-                name: "Last month's usage statistics "
+                name: 'Last month''s usage statistics '
                 type: custom:template-entity-row
               - icon: mdi:currency-eur
                 name: >-
@@ -597,9 +688,487 @@ views:
         show_header_toggle: false
         title: Utilities
         type: entities
+      - type: entities
+        entities:
+          - entity: fan.living_room_ceiling_fan
+            type: custom:slider-entity-row
+          - entity: fan.master_bedroom_ceiling_fan
+            type: custom:slider-entity-row
+          - entity: fan.loft_ceiling_fan
+            type: custom:slider-entity-row
+          - entity: fan.guest_room_ceiling_fan
+            type: custom:slider-entity-row
+          - entity: fan.tonys_office_ceiling_fan
+            type: custom:slider-entity-row
+        title: Fans
+        state_color: true
     icon: mdi:home
     path: default_view
     title: Home
+  - badges: []
+    cards:
+      - columns: 5
+        entities:
+          - entity: sensor.bar_remote_battery
+          - entity: sensor.kitchen_remote_battery
+          - entity: sensor.guest_bedroom_remote_battery
+          - entity: sensor.master_bedroom_remote_battery
+        show_icon: true
+        show_name: false
+        title: Buttons
+        type: glance
+      - entities:
+          - entity: binary_sensor.activity_in_master_bedroom
+          - entity: binary_sensor.activity_in_hall
+          - entity: binary_sensor.activity_in_kitchen
+          - entity: binary_sensor.activity_in_loft
+          - entity: binary_sensor.activity_in_guest_bedroom
+          - entity: binary_sensor.activity_in_living_room
+          - type: divider
+          - entity: binary_sensor.front_door_open
+          - entity: binary_sensor.lumi_lumi_sensor_magnet_aq2_opening_2
+          - entity: binary_sensor.lumi_lumi_sensor_magnet_aq2_opening
+          - type: divider
+          - entity: binary_sensor.motion_detected
+          - entity: binary_sensor.motion_detected_in_last_hour
+          - entity: binary_sensor.someone_showering
+          - entity: binary_sensor.someone_in_the_house_in_last_hour
+          - type: divider
+          - entity: input_boolean.busy_in_kitchen
+          - entity: input_boolean.busy_in_living_room
+          - entity: input_boolean.busy_in_loft
+          - type: divider
+          - entity: input_boolean.watching_in_loft
+          - entity: input_boolean.watching_in_living_room
+        show_header_toggle: false
+        title: Activity in the house
+        type: entities
+      - columns: 3
+        entities:
+          - entity: binary_sensor.lumi_lumi_sensor_motion_aq2_iaszone
+            name: Stairs
+          - entity: sensor.lumi_lumi_sensor_motion_aq2_illuminance
+            name: ''
+          - entity: sensor.lumi_lumi_sensor_motion_aq2_battery
+            name: ''
+          - entity: binary_sensor.lumi_lumi_sensor_motion_aq2_iaszone_2
+            name: Living Room
+          - entity: sensor.lumi_lumi_sensor_motion_aq2_illuminance_2
+            name: ''
+          - entity: sensor.lumi_lumi_sensor_motion_aq2_battery_2
+            name: ''
+          - entity: binary_sensor.lumi_lumi_motion_ac02_iaszone_2
+            name: Kitchen
+          - entity: sensor.lumi_lumi_motion_ac02_illuminance_2
+            name: ''
+          - entity: sensor.lumi_lumi_motion_ac02_battery_2
+            name: ''
+          - entity: binary_sensor.lumi_lumi_motion_ac02_iaszone_3
+            name: Entryway
+          - entity: sensor.lumi_lumi_motion_ac02_illuminance_3
+            name: ''
+          - entity: sensor.lumi_lumi_motion_ac02_battery_3
+            name: ''
+          - entity: binary_sensor.lumi_lumi_sensor_motion_aq2_iaszone_3
+            name: Loft
+          - entity: sensor.lumi_lumi_sensor_motion_aq2_illuminance_3
+            name: ''
+          - entity: sensor.lumi_lumi_sensor_motion_aq2_battery_3
+            name: ''
+          - entity: binary_sensor.lumi_lumi_sensor_motion_aq2_iaszone_4
+            name: Master bedroom
+          - entity: sensor.lumi_lumi_sensor_motion_aq2_illuminance_4
+            name: ''
+          - entity: sensor.lumi_lumi_sensor_motion_aq2_battery_4
+            name: ''
+          - entity: binary_sensor.lumi_lumi_motion_ac02_iaszone
+            name: Guest bedroom
+          - entity: sensor.lumi_lumi_motion_ac02_illuminance
+            name: ''
+          - entity: sensor.lumi_lumi_motion_ac02_battery
+            name: ''
+        show_icon: true
+        show_name: true
+        state_color: true
+        title: Motion sensor
+        type: glance
+      - columns: 2
+        entities:
+          - entity: binary_sensor.front_door_open
+            name: Front door
+          - entity: sensor.front_door_battery_2
+            name: ''
+          - entity: binary_sensor.lumi_lumi_sensor_magnet_aq2_opening
+            name: Garage door
+          - entity: sensor.lumi_lumi_sensor_magnet_aq2_battery
+            name: ''
+          - entity: binary_sensor.lumi_lumi_sensor_magnet_aq2_opening_2
+            name: Backyard door
+          - entity: sensor.lumi_lumi_sensor_magnet_aq2_battery_2
+            name: ''
+        show_icon: true
+        show_name: true
+        title: Open/close sensor
+        type: glance
+      - entities:
+          - entity: binary_sensor.anything_on
+          - entity: binary_sensor.any_light_on
+        show_header_toggle: false
+        title: Devices are on
+        type: entities
+      - columns: 4
+        entities:
+          - entity: sensor.thermostat_1_nativezone_temperature
+            name: First Floor
+          - entity: sensor.thermostat_1_relative_humidity
+            name: ''
+          - entity: sensor.thermostat_1_system_status
+            name: ''
+          - entity: binary_sensor.thermostat_1_blower_active
+            name: ''
+          - entity: sensor.nest_temperature
+            name: Second Floor
+          - entity: sensor.nest_humidity
+            name: ''
+          - entity: sensor.nest_humidity
+            name: ''
+          - entity: sensor.nest_humidity
+            name: ''
+          - entity: sensor.lumi_lumi_weather_temperature
+            name: Main Bathroom
+          - entity: sensor.lumi_lumi_weather_humidity
+            name: ''
+          - entity: sensor.lumi_lumi_weather_pressure
+            name: ''
+          - entity: sensor.lumi_lumi_weather_battery
+            name: ''
+        show_icon: true
+        show_name: true
+        show_state: true
+        theme: Backend-selected
+        title: Temperature sensors
+        type: glance
+      - entities:
+          - entity: sensor.lumi_lumi_weather_humidity
+          - entity: binary_sensor.humidity_bathroom_trend
+          - entity: sensor.humidity_bathroom_derivative
+          - entity: sensor.humidity_bathroom_stats
+          - entity: binary_sensor.someone_showering
+        title: Shower occupied
+        type: entities
+      - entities:
+          - entity: sensor.hours_bedroom_lights_have_been_on_last_7_days
+            icon: mdi:clock
+            name: Bedroom lights
+            secondary: >-
+              Been on {{
+              (states('sensor.hours_bedroom_lights_have_been_on_last_7_days')|float
+              / (7*24) * 100) | round(2) }}% during last 7 days.
+            state: >-
+              {{ states("sensor.hours_bedroom_lights_have_been_on_last_7_days")
+              }} h
+            type: custom:template-entity-row
+          - entity: sensor.hours_living_room_lights_have_been_on_last_7_days
+            icon: mdi:clock
+            name: Living room lights
+            secondary: >-
+              Been on {{
+              (states('sensor.hours_living_room_lights_have_been_on_last_7_days')|float
+              / (7*24) * 100) | round(2) }}% during last 7 days.
+            state: >-
+              {{
+              states("sensor.hours_living_room_lights_have_been_on_last_7_days")
+              }} h
+            type: custom:template-entity-row
+          - entity: sensor.hours_loft_lights_have_been_on_last_7_days
+            icon: mdi:clock
+            name: Loft
+            secondary: >-
+              Been on {{
+              (states('sensor.hours_loft_lights_have_been_on_last_7_days')|float
+              / (7*24) * 100) | round(2) }}% during last 7 days.
+            state: >-
+              {{ states("sensor.hours_loft_lights_have_been_on_last_7_days") }}
+              h
+            type: custom:template-entity-row
+          - entity: sensor.hours_stair_lights_have_been_on_last_7_days
+            icon: mdi:clock
+            name: Stairs
+            secondary: >-
+              Been on {{
+              (states('sensor.hours_stair_lights_have_been_on_last_7_days')|float
+              / (7*24) * 100) | round(2) }}% during last 7 days.
+            state: >-
+              {{ states("sensor.hours_stair_lights_have_been_on_last_7_days") }}
+              h
+            type: custom:template-entity-row
+          - entity: sensor.hours_kitchen_lights_have_been_on_last_7_days
+            icon: mdi:clock
+            name: Kitchen lights
+            secondary: >-
+              Been on {{
+              (states('sensor.hours_kitchen_lights_have_been_on_last_7_days')|float
+              / (7*24) * 100) | round(2) }}% during last 7 days.
+            state: >-
+              {{ states("sensor.hours_kitchen_lights_have_been_on_last_7_days")
+              }} h
+            type: custom:template-entity-row
+          - entity: sensor.hours_entrance_lights_have_been_on_last_7_days
+            icon: mdi:clock
+            name: Entryway lights
+            secondary: >-
+              Been on {{
+              (states('sensor.hours_entrance_lights_have_been_on_last_7_days')|float
+              / (7*24) * 100) | round(2) }}% during last 7 days.
+            state: >-
+              {{ states("sensor.hours_entrance_lights_have_been_on_last_7_days")
+              }} h
+            type: custom:template-entity-row
+          - entity: sensor.hours_porche_lights_have_been_on_last_7_days
+            icon: mdi:clock
+            name: Porche lights
+            secondary: >-
+              Been on {{
+              (states('sensor.hours_porche_lights_have_been_on_last_7_days')|float
+              / (7*24) * 100) | round(2) }}% during last 7 days.
+            state: >-
+              {{ states("sensor.hours_porche_lights_have_been_on_last_7_days")
+              }} h
+            type: custom:template-entity-row
+          - type: divider
+          - entity: sensor.hours_bathroom_light_has_been_on_last_7_days
+            icon: mdi:clock
+            name: Total cost estimate for last 7 days
+            secondary: >-
+              Total is {{ states('sensor.lights_on_total_hours') | round(1) }}
+              hours, {{ states('sensor.lights_on_total_kwh') | round(1) }} kWh,
+              ${{ (states('sensor.lights_on_total_kwh')|float * 0.21) | round(2)
+              }}.
+            state: '{{ states("sensor.lights_on_total_hours") }} h'
+            type: custom:template-entity-row
+        title: Lights on last 7 days
+        type: entities
+      - show_name: true
+        show_icon: true
+        show_state: true
+        columns: 5
+        entities:
+          - entity: sensor.tonys_office_blinds_battery
+          - entity: sensor.living_room_left_blind_battery
+          - entity: sensor.living_room_middle_blind_battery
+          - entity: sensor.living_room_right_blind_battery
+          - entity: sensor.dining_room_left_blind_battery
+          - entity: sensor.dining_room_right_blind_battery
+        title: Blinds
+        type: glance
+        state_color: true
+    icon: mdi:motion-sensor
+    path: sensors
+    title: Sensors
+  - badges: []
+    cards:
+      - entities:
+          - entity: sensor.living_room_tv_volume
+          - type: divider
+          - entity: sensor.loft_tv_volume
+        show_header_toggle: false
+        title: Volume sync
+        type: entities
+      - entities:
+          - entity: input_datetime.dishwasher_on
+          - entity: input_datetime.dishwasher_off
+          - entity: input_datetime.washing_machine_on
+          - entity: input_datetime.washing_machine_off
+          - entity: input_datetime.dryer_machine_on
+          - entity: input_datetime.dryer_machine_off
+        show_header_toggle: false
+        title: Datetimes
+        type: entities
+      - entities:
+          - entity: sensor.times_dishwasher_has_been_on_last_7_days
+          - entity: sensor.hours_dishwasher_has_been_on_last_7_days
+          - entity: sensor.times_washing_machine_has_been_on_last_7_days
+          - entity: sensor.hours_washing_machine_has_been_on_last_7_days
+          - entity: sensor.times_living_room_tv_has_been_on_last_7_days
+          - entity: sensor.hours_living_room_tv_has_been_on_last_7_days
+          - entity: sensor.times_loft_tv_has_been_on_last_7_days
+          - entity: sensor.hours_loft_tv_has_been_on_last_7_days
+        title: Stats
+        type: entities
+      - entities:
+          - animation: 'off'
+            entity_row: true
+            height: 30px
+            indicator: 'off'
+            severity:
+              - color: red
+                from: 0
+                to: 60
+              - color: orange
+                from: 60
+                to: 95
+              - color: green
+                from: 95
+                to: 100
+            style: |
+              ha-card {
+                box-shadow: none;
+                --ha-card-background: 'rgba(0, 0, 0, 0)';
+              }
+            type: custom:bar-card
+            entities:
+              - entity: sensor.quarantine_meter_tony
+          - animation: 'off'
+            entity: sensor.quarantine_meter_lloyd
+            entity_row: true
+            height: 30px
+            indicator: 'off'
+            severity:
+              - color: red
+                from: 0
+                to: 60
+              - color: orange
+                from: 60
+                to: 95
+              - color: green
+                from: 95
+                to: 100
+            style: |
+              ha-card {
+                box-shadow: none;
+                --ha-card-background: 'rgba(0, 0, 0, 0)';
+              }
+            type: custom:bar-card
+        title: Quarantine metrics
+        type: entities
+      - dark_mode: true
+        entities:
+          - entity: person.bas
+          - entity: person.marcella
+        hours_to_show: 240
+        type: map
+      - entities:
+          - entity: sensor.temperature_living_room
+            name: First floor
+            secondary: '💦 {{ states(''sensor.thermostat_1_relative_humidity'') }}% '
+            state: '{{ states("sensor.thermostat_1_nativezone_temperature") }} °F'
+            type: custom:template-entity-row
+          - entity: sensor.temperature_living_room
+            name: Second floor
+            secondary: '💦 {{ states(''sensor.nest_humidity'') }}% '
+            state: '{{ states("sensor.nest_temperature") }} °F'
+            type: custom:template-entity-row
+          - entity: sensor.temperature_living_room
+            name: Master. bathroom
+            secondary: >-
+              💦 {{ states('sensor.humidity_bathroom_stats') }}%, ⚖️ {{
+              states('sensor.lumi_lumi_weather_pressure') }} hPa, 🔋 {{
+              states('sensor.lumi_lumi_weather_power') }}%
+            state: '{{ states("sensor.lumi_lumi_weather_temperature") }} °C'
+            type: custom:template-entity-row
+        title: Temperature sensors
+        type: entities
+    icon: mdi:test-tube
+    path: tests
+    title: Tests
+  - badges: []
+    cards:
+      - card:
+          show_header_toggle: false
+          title: Uncategorized automations
+          type: entities
+        filter:
+          exclude:
+            - entity_id: automation.control_switches*
+            - entity_id: automation.light_*
+            - entity_id: automation.media_player_*
+            - entity_id: automation.security_*
+            - entity_id: automation.system_*
+            - entity_id: automation.utilities_*
+            - entity_id: automation.vacuum_*
+            - entity_id: automation.notifications_*
+            - entity_id: automation.work*
+            - entity_id: automation.blinds*
+            - entity_id: automation.actionable_notification*
+            - entity_id: automation.time*
+          include:
+            - domain: automation
+        sort: entity_id
+        type: custom:auto-entities
+      - template: automation_template
+        type: custom:decluttering-card
+        variables:
+          - name: Blinds
+          - slug: blinds
+      - template: automation_template
+        type: custom:decluttering-card
+        variables:
+          - name: Control switches
+          - slug: control_switches
+      - template: automation_template
+        type: custom:decluttering-card
+        variables:
+          - name: Light
+          - slug: light
+      - template: automation_template
+        type: custom:decluttering-card
+        variables:
+          - name: Media player
+          - slug: media_player_
+      - template: automation_template
+        type: custom:decluttering-card
+        variables:
+          - name: Notifications
+          - slug: notifications
+      - template: automation_template
+        type: custom:decluttering-card
+        variables:
+          - name: Utilities
+          - slug: utilities_
+      - template: automation_template
+        type: custom:decluttering-card
+        variables:
+          - name: Actionable notifications
+          - slug: actionable_notification_
+      - template: automation_template
+        type: custom:decluttering-card
+        variables:
+          - name: Time based automation
+          - slug: time
+    icon: mdi:robot
+    path: automations
+    title: Automations
+  - theme: Backend-selected
+    title: Cameras
+    path: cameras
+    icon: mdi:camera
+    badges: []
+    cards:
+      - show_state: true
+        show_name: true
+        camera_view: auto
+        entity: camera.porch
+        type: picture-entity
+      - show_state: true
+        show_name: true
+        camera_view: auto
+        entity: camera.backyard
+        type: picture-entity
+      - show_state: true
+        show_name: true
+        camera_view: auto
+        entity: camera.entrance
+        type: picture-entity
+      - show_state: true
+        show_name: true
+        camera_view: auto
+        entity: camera.entryway
+        type: picture-entity
+      - show_state: true
+        show_name: true
+        camera_view: auto
+        entity: camera.porch_2
+        type: picture-entity
   - cards:
       - cards:
           - entities:
@@ -615,13 +1184,11 @@ views:
               - type: divider
               - entity: sensor.last_boot
                 icon: mdi:calendar
-              - entity: sensor.uptime
-                icon: mdi:home-assistant
-              - animation: "off"
+              - animation: 'off'
                 entity: sensor.processor_use
                 entity_row: true
                 height: 100%
-                indicator: "off"
+                indicator: 'off'
                 severity:
                   - color: green
                     from: 0
@@ -638,11 +1205,11 @@ views:
                     --ha-card-background: 'rgba(0, 0, 0, 0)';
                   }
                 type: custom:bar-card
-              - animation: "off"
+              - animation: 'off'
                 entity: sensor.processor_temperature
                 entity_row: true
                 height: 100%
-                indicator: "off"
+                indicator: 'off'
                 severity:
                   - color: green
                     from: 0
@@ -659,11 +1226,11 @@ views:
                     --ha-card-background: 'rgba(0, 0, 0, 0)';
                   }
                 type: custom:bar-card
-              - animation: "off"
+              - animation: 'off'
                 entity: sensor.memory_use_percent
                 entity_row: true
                 height: 100%
-                indicator: "off"
+                indicator: 'off'
                 severity:
                   - color: green
                     from: 0
@@ -680,11 +1247,11 @@ views:
                     --ha-card-background: 'rgba(0, 0, 0, 0)';
                   }
                 type: custom:bar-card
-              - animation: "off"
+              - animation: 'off'
                 entity: sensor.disk_use_percent
                 entity_row: true
                 height: 100%
-                indicator: "off"
+                indicator: 'off'
                 severity:
                   - color: green
                     from: 0
@@ -850,449 +1417,3 @@ views:
     icon: mdi:home-assistant
     path: system
     title: System Information
-  - badges: []
-    cards:
-      - columns: 5
-        entities:
-          - entity: sensor.bar_button_battery
-          - entity: sensor.kitchen_manual_switch_battery
-          - entity: sensor.bed_switch_battery
-          - entity: sensor.lr_blinds_remote_battery
-          - entity: sensor.lumi_lumi_sensor_cube_1ac56408_power
-        show_icon: true
-        show_name: false
-        title: Buttons
-        type: glance
-      - entities:
-          - entity: binary_sensor.activity_in_master_bedroom
-          - entity: binary_sensor.activity_in_hall
-          - entity: binary_sensor.activity_in_kitchen
-          - entity: binary_sensor.activity_in_loft
-          - entity: binary_sensor.activity_in_guest_bedroom
-          - entity: binary_sensor.activity_in_living_room
-          - type: divider
-          - entity: binary_sensor.front_door_open
-          - entity: binary_sensor.lumi_lumi_sensor_magnet_aq2_24483a08_on_off
-          - entity: binary_sensor.lumi_lumi_sensor_magnet_aq2_on_off
-          - type: divider
-          - entity: binary_sensor.motion_detected
-          - entity: binary_sensor.motion_detected_in_last_hour
-          - entity: binary_sensor.someone_showering
-          - entity: binary_sensor.someone_in_the_house_in_last_hour
-          - type: divider
-          - entity: input_boolean.busy_in_kitchen
-          - entity: input_boolean.busy_in_living_room
-          - entity: input_boolean.busy_in_loft
-          - type: divider
-          - entity: input_boolean.watching_in_loft
-          - entity: input_boolean.watching_in_living_room
-        show_header_toggle: false
-        title: Activity in the house
-        type: entities
-      - columns: 3
-        entities:
-          - entity: binary_sensor.lumi_lumi_sensor_motion_aq2_b0f5e207_ias_zone
-            name: Living room
-          - entity: sensor.lumi_lumi_sensor_motion_aq2_b0f5e207_illuminance
-            name: ""
-          - entity: sensor.lumi_lumi_sensor_motion_aq2_b0f5e207_power
-            name: ""
-          - entity: binary_sensor.lumi_lumi_motion_ac02_ias_zone
-            name: Kitchen
-          - entity: sensor.lumi_lumi_motion_ac02_ed454e00_illuminance
-            name: ""
-          - entity: sensor.lumi_lumi_motion_ac02_power
-            name: ""
-          - entity: binary_sensor.lumi_lumi_motion_ac02_c73f4e00_ias_zone
-            name: Entryway
-          - entity: sensor.lumi_lumi_motion_ac02_c73f4e00_illuminance
-            name: ""
-          - entity: sensor.lumi_lumi_motion_ac02_c73f4e00_power
-            name: ""
-          - entity: binary_sensor.lumi_lumi_sensor_motion_aq2_c039e207_ias_zone
-            name: Master bedroom
-          - entity: sensor.lumi_lumi_sensor_motion_aq2_c039e207_illuminance
-            name: ""
-          - entity: sensor.lumi_lumi_sensor_motion_aq2_c039e207_power
-            name: ""
-          - entity: binary_sensor.lumi_lumi_motion_ac02_41494e00_ias_zone
-            name: Guest bedroom
-          - entity: sensor.lumi_lumi_motion_ac02_41494e00_illuminance
-            name: ""
-          - entity: sensor.lumi_lumi_motion_ac02_41494e00_power
-            name: ""
-          - entity: binary_sensor.lumi_lumi_sensor_motion_aq2_42e6e307_ias_zone
-            name: Loft
-          - entity: sensor.lumi_lumi_sensor_motion_aq2_42e6e307_illuminance
-            name: ""
-          - entity: sensor.lumi_lumi_sensor_motion_aq2_42e6e307_power
-            name: ""
-        show_icon: true
-        show_name: true
-        state_color: true
-        title: Motion sensor
-        type: glance
-      - columns: 2
-        entities:
-          - entity: binary_sensor.front_door_open
-            name: Front door
-          - entity: sensor.front_door_battery_2
-            name: ""
-          - entity: binary_sensor.lumi_lumi_sensor_magnet_aq2_24483a08_on_off
-            name: Garage door
-          - entity: sensor.lumi_lumi_sensor_magnet_aq2_24483a08_power
-            name: ""
-          - entity: binary_sensor.lumi_lumi_sensor_magnet_aq2_on_off
-            name: Backyard door
-          - entity: sensor.lumi_lumi_sensor_magnet_aq2_power
-            name: ""
-        show_icon: true
-        show_name: true
-        title: Open/close sensor
-        type: glance
-      - entities:
-          - entity: binary_sensor.anything_on
-          - entity: binary_sensor.any_light_on
-        show_header_toggle: false
-        title: Devices are on
-        type: entities
-      - columns: 4
-        entities:
-          - entity: sensor.thermostat_1_nativezone_temperature
-            name: First Floor
-          - entity: sensor.thermostat_1_relative_humidity
-            name: ""
-          - entity: sensor.thermostat_1_system_status
-            name: ""
-          - entity: binary_sensor.thermostat_1_blower_active
-            name: ""
-          - entity: sensor.nest_temperature
-            name: Second Floor
-          - entity: sensor.nest_humidity
-            name: ""
-          - entity: sensor.nest_humidity
-            name: ""
-          - entity: sensor.nest_humidity
-            name: ""
-          - entity: sensor.lumi_lumi_weather_temperature
-            name: Main Bathroom
-          - entity: sensor.lumi_lumi_weather_humidity
-            name: ""
-          - entity: sensor.lumi_lumi_weather_pressure
-            name: ""
-          - entity: sensor.lumi_lumi_weather_power
-            name: ""
-        show_icon: true
-        show_name: true
-        show_state: true
-        theme: Backend-selected
-        title: Temperature sensors
-        type: glance
-      - entities:
-          - entity: sensor.lumi_lumi_weather_humidity
-          - entity: binary_sensor.humidity_bathroom_trend
-          - entity: sensor.humidity_bathroom_derivative
-          - entity: sensor.humidity_bathroom_stats
-          - entity: binary_sensor.someone_showering
-        title: Shower occupied
-        type: entities
-      - entities:
-          - entity: sensor.hours_bedroom_lights_have_been_on_last_7_days
-            icon: mdi:clock
-            name: Bedroom lights
-            secondary: >-
-              Been on {{
-              (states('sensor.hours_bedroom_lights_have_been_on_last_7_days')|float
-              / (7*24) * 100) | round(2) }}% during last 7 days.
-            state: >-
-              {{ states("sensor.hours_bedroom_lights_have_been_on_last_7_days")
-              }} h
-            type: custom:template-entity-row
-          - entity: sensor.hours_living_room_lights_have_been_on_last_7_days
-            icon: mdi:clock
-            name: Living room lights
-            secondary: >-
-              Been on {{
-              (states('sensor.hours_living_room_lights_have_been_on_last_7_days')|float
-              / (7*24) * 100) | round(2) }}% during last 7 days.
-            state: >-
-              {{
-              states("sensor.hours_living_room_lights_have_been_on_last_7_days")
-              }} h
-            type: custom:template-entity-row
-          - entity: sensor.hours_loft_lights_have_been_on_last_7_days
-            icon: mdi:clock
-            name: Loft
-            secondary: >-
-              Been on {{
-              (states('sensor.hours_loft_lights_have_been_on_last_7_days')|float
-              / (7*24) * 100) | round(2) }}% during last 7 days.
-            state: >-
-              {{ states("sensor.hours_loft_lights_have_been_on_last_7_days") }}
-              h
-            type: custom:template-entity-row
-          - entity: sensor.hours_stair_lights_have_been_on_last_7_days
-            icon: mdi:clock
-            name: Stairs
-            secondary: >-
-              Been on {{
-              (states('sensor.hours_stair_lights_have_been_on_last_7_days')|float
-              / (7*24) * 100) | round(2) }}% during last 7 days.
-            state: >-
-              {{ states("sensor.hours_stair_lights_have_been_on_last_7_days") }}
-              h
-            type: custom:template-entity-row
-          - entity: sensor.hours_kitchen_lights_have_been_on_last_7_days
-            icon: mdi:clock
-            name: Kitchen lights
-            secondary: >-
-              Been on {{
-              (states('sensor.hours_kitchen_lights_have_been_on_last_7_days')|float
-              / (7*24) * 100) | round(2) }}% during last 7 days.
-            state: >-
-              {{ states("sensor.hours_kitchen_lights_have_been_on_last_7_days")
-              }} h
-            type: custom:template-entity-row
-          - entity: sensor.hours_entrance_lights_have_been_on_last_7_days
-            icon: mdi:clock
-            name: Entryway lights
-            secondary: >-
-              Been on {{
-              (states('sensor.hours_entrance_lights_have_been_on_last_7_days')|float
-              / (7*24) * 100) | round(2) }}% during last 7 days.
-            state: >-
-              {{ states("sensor.hours_entrance_lights_have_been_on_last_7_days")
-              }} h
-            type: custom:template-entity-row
-          - entity: sensor.hours_porche_lights_have_been_on_last_7_days
-            icon: mdi:clock
-            name: Porche lights
-            secondary: >-
-              Been on {{
-              (states('sensor.hours_porche_lights_have_been_on_last_7_days')|float
-              / (7*24) * 100) | round(2) }}% during last 7 days.
-            state: >-
-              {{ states("sensor.hours_porche_lights_have_been_on_last_7_days")
-              }} h
-            type: custom:template-entity-row
-          - type: divider
-          - entity: sensor.hours_bathroom_light_has_been_on_last_7_days
-            icon: mdi:clock
-            name: Total cost estimate for last 7 days
-            secondary: >-
-              Total is {{ states('sensor.lights_on_total_hours') | round(1) }}
-              hours, {{ states('sensor.lights_on_total_kwh') | round(1) }} kWh,
-              ${{ (states('sensor.lights_on_total_kwh')|float * 0.21) | round(2)
-              }}.
-            state: '{{ states("sensor.lights_on_total_hours") }} h'
-            type: custom:template-entity-row
-        title: Lights on last 7 days
-        type: entities
-      - show_name: false
-        show_icon: true
-        show_state: true
-        columns: 5
-        entities:
-          - entity: sensor.tony_blinds_battery
-          - entity: sensor.lv_left_blind_battery
-          - entity: sensor.lv_middle_blilnd_battery
-          - entity: sensor.lv_right_blind_battery
-          - entity: sensor.right_window_dinning_battery
-          - entity: sensor.left_window_dinning_battery
-        title: Blinds
-        type: glance
-    icon: mdi:motion-sensor
-    path: sensors
-    title: Sensors
-  - badges: []
-    cards:
-      - entities:
-          - entity: sensor.living_room_tv_volume
-          - type: divider
-          - entity: sensor.loft_tv_volume
-        show_header_toggle: false
-        title: Volume sync
-        type: entities
-      - entities:
-          - entity: input_datetime.dishwasher_on
-          - entity: input_datetime.dishwasher_off
-          - entity: input_datetime.washing_machine_on
-          - entity: input_datetime.washing_machine_off
-          - entity: input_datetime.dryer_machine_on
-          - entity: input_datetime.dryer_machine_off
-        show_header_toggle: false
-        title: Datetimes
-        type: entities
-      - entities:
-          - entity: sensor.times_dishwasher_has_been_on_last_7_days
-          - entity: sensor.hours_dishwasher_has_been_on_last_7_days
-          - entity: sensor.times_washing_machine_has_been_on_last_7_days
-          - entity: sensor.hours_washing_machine_has_been_on_last_7_days
-          - entity: sensor.times_living_room_tv_has_been_on_last_7_days
-          - entity: sensor.hours_living_room_tv_has_been_on_last_7_days
-          - entity: sensor.times_loft_tv_has_been_on_last_7_days
-          - entity: sensor.hours_loft_tv_has_been_on_last_7_days
-        title: Stats
-        type: entities
-      - entities:
-          - animation: "off"
-            entity_row: true
-            height: 30px
-            indicator: "off"
-            severity:
-              - color: red
-                from: 0
-                to: 60
-              - color: orange
-                from: 60
-                to: 95
-              - color: green
-                from: 95
-                to: 100
-            style: |
-              ha-card {
-                box-shadow: none;
-                --ha-card-background: 'rgba(0, 0, 0, 0)';
-              }
-            type: custom:bar-card
-            entities:
-              - entity: sensor.quarantine_meter_tony
-          - animation: "off"
-            entity: sensor.quarantine_meter_lloyd
-            entity_row: true
-            height: 30px
-            indicator: "off"
-            severity:
-              - color: red
-                from: 0
-                to: 60
-              - color: orange
-                from: 60
-                to: 95
-              - color: green
-                from: 95
-                to: 100
-            style: |
-              ha-card {
-                box-shadow: none;
-                --ha-card-background: 'rgba(0, 0, 0, 0)';
-              }
-            type: custom:bar-card
-        title: Quarantine metrics
-        type: entities
-      - dark_mode: true
-        entities:
-          - entity: person.bas
-          - entity: person.marcella
-        hours_to_show: 240
-        type: map
-      - entities:
-          - entity: sensor.temperature_living_room
-            name: First floor
-            secondary: "💦 {{ states('sensor.thermostat_1_relative_humidity') }}% "
-            state: '{{ states("sensor.thermostat_1_nativezone_temperature") }} °F'
-            type: custom:template-entity-row
-          - entity: sensor.temperature_living_room
-            name: Second floor
-            secondary: "💦 {{ states('sensor.nest_humidity') }}% "
-            state: '{{ states("sensor.nest_temperature") }} °F'
-            type: custom:template-entity-row
-          - entity: sensor.temperature_living_room
-            name: Master. bathroom
-            secondary: >-
-              💦 {{ states('sensor.humidity_bathroom_stats') }}%, ⚖️ {{
-              states('sensor.lumi_lumi_weather_pressure') }} hPa, 🔋 {{
-              states('sensor.lumi_lumi_weather_power') }}%
-            state: '{{ states("sensor.lumi_lumi_weather_temperature") }} °C'
-            type: custom:template-entity-row
-        title: Temperature sensors
-        type: entities
-    icon: mdi:test-tube
-    path: tests
-    title: Tests
-  - badges: []
-    cards:
-      - card:
-          show_header_toggle: false
-          title: Uncategorized automations
-          type: entities
-        filter:
-          exclude:
-            - entity_id: automation.control_switches*
-            - entity_id: automation.light_*
-            - entity_id: automation.media_player_*
-            - entity_id: automation.security_*
-            - entity_id: automation.system_*
-            - entity_id: automation.utilities_*
-            - entity_id: automation.vacuum_*
-            - entity_id: automation.notifications_*
-            - entity_id: automation.work*
-            - entity_id: automation.blinds*
-          include:
-            - domain: automation
-        sort: entity_id
-        type: custom:auto-entities
-      - template: automation_template
-        type: custom:decluttering-card
-        variables:
-          - name: Blinds
-          - slug: blinds
-      - template: automation_template
-        type: custom:decluttering-card
-        variables:
-          - name: Control switches
-          - slug: control_switches
-      - template: automation_template
-        type: custom:decluttering-card
-        variables:
-          - name: Light
-          - slug: light
-      - template: automation_template
-        type: custom:decluttering-card
-        variables:
-          - name: Media player
-          - slug: media_player_
-      - template: automation_template
-        type: custom:decluttering-card
-        variables:
-          - name: Notifications
-          - slug: notifications
-      - template: automation_template
-        type: custom:decluttering-card
-        variables:
-          - name: Utilities
-          - slug: utilities_
-    icon: mdi:robot
-    path: automations
-    title: Automations
-  - theme: Backend-selected
-    title: Cameras
-    path: cameras
-    icon: mdi:camera
-    badges: []
-    cards:
-      - show_state: true
-        show_name: true
-        camera_view: auto
-        entity: camera.porch
-        type: picture-entity
-      - show_state: true
-        show_name: true
-        camera_view: auto
-        entity: camera.backyard
-        type: picture-entity
-      - show_state: true
-        show_name: true
-        camera_view: auto
-        entity: camera.entrance
-        type: picture-entity
-      - show_state: true
-        show_name: true
-        camera_view: auto
-        entity: camera.entryway
-        type: picture-entity
-      - show_state: true
-        show_name: true
-        camera_view: auto
-        entity: camera.porch_2
-        type: picture-entity

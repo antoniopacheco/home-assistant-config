@@ -17,12 +17,7 @@
 - alias: "Control switches: mark kitchen busy"
   description: when clicking the button busy in kitchen is on
   trigger:
-    - device_id: 1138a5f9bce2aaed6b7b75cba6cdabf6
-      domain: zha
-      platform: device
-      type: remote_button_short_press
-      subtype: open
-    - device_id: aee89585cb6a8d9bf73b98bef7f0387c
+    - device_id: 8d6694c6e4b06b7a9fed47676ece2469
       domain: zha
       platform: device
       type: remote_button_short_press
@@ -34,9 +29,10 @@
       target:
         entity_id: input_boolean.busy_in_kitchen
     - type: turn_on
-      device_id: b6ecb1786d89951862e4f0a8301302bd
-      entity_id: switch.kitchen_main_lights
-      domain: switch
+      device_id: 1899af3967b4c4b386e8cc9b8576179f
+      entity_id: light.kitchen_main_lights_light_2
+      domain: light
+      brightness_pct: 100
     - delay: 00:15:00
     - service: script.activate_alexa_actionable_notification
       data:
@@ -48,12 +44,42 @@
 - alias: "Control switches: mark kitchen as not bussy"
   description: make busy in kitchen status to be null
   trigger:
-    - device_id: 1138a5f9bce2aaed6b7b75cba6cdabf6
+    - device_id: 8d6694c6e4b06b7a9fed47676ece2469
       domain: zha
       platform: device
       type: remote_button_short_press
       subtype: close
-    - device_id: aee89585cb6a8d9bf73b98bef7f0387c
+  condition: []
+  action:
+    - type: turn_off
+      device_id: 1899af3967b4c4b386e8cc9b8576179f
+      entity_id: light.kitchen_main_lights_light_2
+      domain: light
+    - service: input_boolean.turn_off
+      data: {}
+      target:
+        entity_id: input_boolean.busy_in_kitchen
+  mode: single
+
+- alias: "Control switches: turn on bar lights with remote"
+  description: when clicking the button on in bar
+  trigger:
+    - device_id: 7e20e872ef049b84ffcf66505ddb5946
+      domain: zha
+      platform: device
+      type: remote_button_short_press
+      subtype: open
+  condition: []
+  action:
+    - type: turn_on
+      device_id: b6ecb1786d89951862e4f0a8301302bd
+      entity_id: light.kitchen_island_pendants
+      domain: light
+
+- alias: "Control switches: turn off bar lights with remote"
+  description: when clicking the button on in bar
+  trigger:
+    - device_id: 7e20e872ef049b84ffcf66505ddb5946
       domain: zha
       platform: device
       type: remote_button_short_press
@@ -62,13 +88,8 @@
   action:
     - type: turn_off
       device_id: b6ecb1786d89951862e4f0a8301302bd
-      entity_id: switch.kitchen_main_lights
-      domain: switch
-    - service: input_boolean.turn_off
-      data: {}
-      target:
-        entity_id: input_boolean.busy_in_kitchen
-  mode: single
+      entity_id: light.kitchen_island_pendants
+      domain: light
 
 #    __  __           _              _              _
 # |  \/  | __ _ ___| |_ ___ _ __  | |__   ___  __| |_ __ ___   ___  _ __ ___
@@ -81,7 +102,7 @@
     prepares room to sleep and read Alexa notification of door devices
     status
   trigger:
-    - device_id: c793e4ce34753abd80b6a18c6df7bd2c
+    - device_id: 5a68702aff4c766e1b13df267abdc4c9
       domain: zha
       platform: device
       type: remote_button_short_press
@@ -94,7 +115,7 @@
 - alias: "Control switches: Master Bedroom Actionable lights"
   description: alexa will ask if room is busy
   trigger:
-    - device_id: c793e4ce34753abd80b6a18c6df7bd2c
+    - device_id: 5a68702aff4c766e1b13df267abdc4c9
       domain: zha
       platform: device
       type: remote_button_short_press
@@ -102,9 +123,10 @@
   condition: []
   action:
     - type: turn_on
-      device_id: ec0c8c237f75405507b5c3329aebe55c
-      entity_id: light.bedroom_fan_light
+      device_id: c6fb0ddc8a44f44185180b7614664533
+      entity_id: light.inovelli_vzm31_sn_light_4
       domain: light
+      brightness_pct: 100
     - service: script.activate_alexa_actionable_notification
       data:
         text: Should I keep lights on?
