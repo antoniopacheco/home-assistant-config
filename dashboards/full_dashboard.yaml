@@ -1,10 +1,11 @@
+---
 background: var(--background-image)
 decluttering_templates:
   automation_template:
     card:
       card:
         show_header_toggle: false
-        title: '[[name]] automations'
+        title: "[[name]] automations"
         type: entities
       filter:
         include:
@@ -39,7 +40,7 @@ views:
         filter:
           include:
             - domain: light
-              state: 'on'
+              state: "on"
               options:
                 tap_action:
                   action: toggle
@@ -244,7 +245,7 @@ views:
                 secondary:
                   attribute: battery_level
                   name: Battery
-                  unit: '%'
+                  unit: "%"
                 type: custom:multiple-entity-row
               - entity: switch.first_floor_vacuum_mode
               - entity: input_boolean.swiped_first_floor_today
@@ -262,7 +263,7 @@ views:
                 secondary:
                   attribute: battery_level
                   name: Battery
-                  unit: '%'
+                  unit: "%"
                 type: custom:multiple-entity-row
               - entity: switch.first_floor_mop_mode
               - entity: input_boolean.swiped_first_floor_today
@@ -597,7 +598,7 @@ views:
             type: custom:fold-entity-row
           - entities:
               - icon: mdi:currency-eur
-                name: 'Today''s usage statistics '
+                name: "Today's usage statistics "
                 type: custom:template-entity-row
               - icon: mdi:currency-eur
                 name: >-
@@ -645,7 +646,7 @@ views:
                 type: custom:template-entity-row
               - type: divider
               - icon: mdi:currency-eur
-                name: 'Last month''s usage statistics '
+                name: "Last month's usage statistics "
                 type: custom:template-entity-row
               - icon: mdi:currency-eur
                 name: >-
@@ -748,45 +749,45 @@ views:
           - entity: binary_sensor.lumi_lumi_sensor_motion_aq2_iaszone
             name: Stairs
           - entity: sensor.lumi_lumi_sensor_motion_aq2_illuminance
-            name: ''
+            name: ""
           - entity: sensor.lumi_lumi_sensor_motion_aq2_battery
-            name: ''
+            name: ""
           - entity: binary_sensor.lumi_lumi_sensor_motion_aq2_iaszone_2
             name: Living Room
           - entity: sensor.lumi_lumi_sensor_motion_aq2_illuminance_2
-            name: ''
+            name: ""
           - entity: sensor.lumi_lumi_sensor_motion_aq2_battery_2
-            name: ''
+            name: ""
           - entity: binary_sensor.lumi_lumi_motion_ac02_iaszone_2
             name: Kitchen
           - entity: sensor.lumi_lumi_motion_ac02_illuminance_2
-            name: ''
+            name: ""
           - entity: sensor.lumi_lumi_motion_ac02_battery_2
-            name: ''
+            name: ""
           - entity: binary_sensor.lumi_lumi_motion_ac02_iaszone_3
             name: Entryway
           - entity: sensor.lumi_lumi_motion_ac02_illuminance_3
-            name: ''
+            name: ""
           - entity: sensor.lumi_lumi_motion_ac02_battery_3
-            name: ''
+            name: ""
           - entity: binary_sensor.lumi_lumi_sensor_motion_aq2_iaszone_3
             name: Loft
           - entity: sensor.lumi_lumi_sensor_motion_aq2_illuminance_3
-            name: ''
+            name: ""
           - entity: sensor.lumi_lumi_sensor_motion_aq2_battery_3
-            name: ''
+            name: ""
           - entity: binary_sensor.lumi_lumi_sensor_motion_aq2_iaszone_4
             name: Master bedroom
           - entity: sensor.lumi_lumi_sensor_motion_aq2_illuminance_4
-            name: ''
+            name: ""
           - entity: sensor.lumi_lumi_sensor_motion_aq2_battery_4
-            name: ''
+            name: ""
           - entity: binary_sensor.lumi_lumi_motion_ac02_iaszone
             name: Guest bedroom
           - entity: sensor.lumi_lumi_motion_ac02_illuminance
-            name: ''
+            name: ""
           - entity: sensor.lumi_lumi_motion_ac02_battery
-            name: ''
+            name: ""
         show_icon: true
         show_name: true
         state_color: true
@@ -797,15 +798,15 @@ views:
           - entity: binary_sensor.front_door_open
             name: Front door
           - entity: sensor.front_door_battery_2
-            name: ''
+            name: ""
           - entity: binary_sensor.lumi_lumi_sensor_magnet_aq2_opening
             name: Garage door
           - entity: sensor.lumi_lumi_sensor_magnet_aq2_battery
-            name: ''
+            name: ""
           - entity: binary_sensor.lumi_lumi_sensor_magnet_aq2_opening_2
             name: Backyard door
           - entity: sensor.lumi_lumi_sensor_magnet_aq2_battery_2
-            name: ''
+            name: ""
         show_icon: true
         show_name: true
         title: Open/close sensor
@@ -821,27 +822,27 @@ views:
           - entity: sensor.thermostat_1_nativezone_temperature
             name: First Floor
           - entity: sensor.thermostat_1_relative_humidity
-            name: ''
+            name: ""
           - entity: sensor.thermostat_1_system_status
-            name: ''
+            name: ""
           - entity: binary_sensor.thermostat_1_blower_active
-            name: ''
+            name: ""
           - entity: sensor.nest_temperature
             name: Second Floor
           - entity: sensor.nest_humidity
-            name: ''
+            name: ""
           - entity: sensor.nest_humidity
-            name: ''
+            name: ""
           - entity: sensor.nest_humidity
-            name: ''
+            name: ""
           - entity: sensor.lumi_lumi_weather_temperature
             name: Main Bathroom
           - entity: sensor.lumi_lumi_weather_humidity
-            name: ''
+            name: ""
           - entity: sensor.lumi_lumi_weather_pressure
-            name: ''
+            name: ""
           - entity: sensor.lumi_lumi_weather_battery
-            name: ''
+            name: ""
         show_icon: true
         show_name: true
         show_state: true
@@ -996,10 +997,10 @@ views:
         title: Stats
         type: entities
       - entities:
-          - animation: 'off'
+          - animation: "off"
             entity_row: true
             height: 30px
-            indicator: 'off'
+            indicator: "off"
             severity:
               - color: red
                 from: 0
@@ -1018,11 +1019,11 @@ views:
             type: custom:bar-card
             entities:
               - entity: sensor.quarantine_meter_tony
-          - animation: 'off'
+          - animation: "off"
             entity: sensor.quarantine_meter_lloyd
             entity_row: true
             height: 30px
-            indicator: 'off'
+            indicator: "off"
             severity:
               - color: red
                 from: 0
@@ -1050,12 +1051,12 @@ views:
       - entities:
           - entity: sensor.temperature_living_room
             name: First floor
-            secondary: '💦 {{ states(''sensor.thermostat_1_relative_humidity'') }}% '
+            secondary: "💦 {{ states('sensor.thermostat_1_relative_humidity') }}% "
             state: '{{ states("sensor.thermostat_1_nativezone_temperature") }} °F'
             type: custom:template-entity-row
           - entity: sensor.temperature_living_room
             name: Second floor
-            secondary: '💦 {{ states(''sensor.nest_humidity'') }}% '
+            secondary: "💦 {{ states('sensor.nest_humidity') }}% "
             state: '{{ states("sensor.nest_temperature") }} °F'
             type: custom:template-entity-row
           - entity: sensor.temperature_living_room
@@ -1184,11 +1185,11 @@ views:
               - type: divider
               - entity: sensor.last_boot
                 icon: mdi:calendar
-              - animation: 'off'
+              - animation: "off"
                 entity: sensor.processor_use
                 entity_row: true
                 height: 100%
-                indicator: 'off'
+                indicator: "off"
                 severity:
                   - color: green
                     from: 0
@@ -1205,11 +1206,11 @@ views:
                     --ha-card-background: 'rgba(0, 0, 0, 0)';
                   }
                 type: custom:bar-card
-              - animation: 'off'
+              - animation: "off"
                 entity: sensor.processor_temperature
                 entity_row: true
                 height: 100%
-                indicator: 'off'
+                indicator: "off"
                 severity:
                   - color: green
                     from: 0
@@ -1226,11 +1227,11 @@ views:
                     --ha-card-background: 'rgba(0, 0, 0, 0)';
                   }
                 type: custom:bar-card
-              - animation: 'off'
+              - animation: "off"
                 entity: sensor.memory_use_percent
                 entity_row: true
                 height: 100%
-                indicator: 'off'
+                indicator: "off"
                 severity:
                   - color: green
                     from: 0
@@ -1247,11 +1248,11 @@ views:
                     --ha-card-background: 'rgba(0, 0, 0, 0)';
                   }
                 type: custom:bar-card
-              - animation: 'off'
+              - animation: "off"
                 entity: sensor.disk_use_percent
                 entity_row: true
                 height: 100%
-                indicator: 'off'
+                indicator: "off"
                 severity:
                   - color: green
                     from: 0

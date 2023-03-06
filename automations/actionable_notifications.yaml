@@ -142,11 +142,11 @@
           entity_id: binary_sensor.lumi_lumi_motion_ac02_ias_zone
           state: "off"
       then:
-      - type: turn_off
-        device_id: 1899af3967b4c4b386e8cc9b8576179f
-        entity_id: light.kitchen_main_lights_light_2
-        domain: light
-      - type: turn_off
-        device_id: b6ecb1786d89951862e4f0a8301302bd
-        entity_id: light.kitchen_main_lights
-        domain: light
+        - type: turn_off
+          device_id: 1899af3967b4c4b386e8cc9b8576179f
+          entity_id: light.kitchen_main_lights_light_2
+          domain: light
+        - type: turn_off
+          device_id: b6ecb1786d89951862e4f0a8301302bd
+          entity_id: light.kitchen_main_lights
+          domain: light
